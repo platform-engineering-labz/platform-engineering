@@ -1,0 +1,23 @@
+flowchart LR
+  subgraph PRE["Before upgrade"]
+    A["EKS control plane"] --> B["Node groups / Karpenter"]
+    A --> C["Managed add-ons"]
+    A --> D["Workloads / CRDs"]
+  end
+  subgraph CHANGE["Change control"]
+    E["Compatibility assessment"] --> F["Upgrade"]
+    F --> G{"Health gates pass?"}
+  end
+  subgraph RECOVER["Recovery"]
+    G -->|Yes| H["Promote baseline"]
+    G -->|No| I{"Rollback eligible?"}
+    I -->|Yes| J["AWS rollback API"]
+    I -->|No| K["Forward recovery"]
+    J --> L["Reconcile Terraform and add-ons"]
+    K --> L
+  end
+  PRE --> E
+  classDef risk fill:#fff1f2,stroke:#be123c,color:#881337
+  classDef good fill:#ecfdf5,stroke:#047857,color:#065f46
+  class G,I risk
+  class H,L good
