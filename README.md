@@ -1,17 +1,23 @@
 # Platform Engineering
 
-Public, independent technical learning and a reusable professional knowledge base.
+A public platform-engineering monorepo for independent projects, working labs, reusable code, architectures, troubleshooting, and technical reference material.
 
-Start with the [Engineering Reference index](engineering-reference/INDEX.md). The repository's [AGENTS.md](AGENTS.md) defines the persistent workflow and its [skills](.agents/skills/) handle repository review and knowledge curation.
+- [Engineering reference and topic index](engineering-reference/INDEX.md)
+- [Repository-wide AI instructions](AGENTS.md)
+- [Reusable agent skills](.agents/skills/)
 
-## Restore the workflow in a new ChatGPT conversation
+## Restore the ChatGPT workflow
 
-Connect the GitHub integration and paste this prompt (or save it as ChatGPT Project instructions):
+In your **existing Platform Engineering ChatGPT Project**, add these instructions to its Project settings, or paste them into a new chat when needed:
 
 ```text
-My professional technical knowledge source of truth is platform-engineering-labz/platform-engineering (main). When I ask you to review the repository, read AGENTS.md and the applicable .agents/skills/ instructions. Search relevant committed examples, then tell me whether this question is already covered, related to an existing topic that should be enhanced, or new. Answer the question; don't edit the repository just because I asked for a review.
+Use platform-engineering-labz/platform-engineering as my source of truth for committed platform-engineering projects, code, labs, architecture, and professional knowledge.
 
-Only when I explicitly say "Add this to my repository" or request saving/updating content: improve an existing topic or create a new one under engineering-reference/, maintain the index, create a descriptive branch from main, commit and verify changes, and open a PR targeting main. Provide its URL and commit SHA. Never merge, force-push, or change protections. Use public or synthetic examples only; no employer code, private details, or secrets. Do not require manual Git commands or Codespaces.
+For ordinary questions, answer normally. When I ask you to review the repository, use GitHub to read AGENTS.md and relevant .agents/skills/ files, then search existing code and documentation. Tell me what is covered, what can be enhanced, or what is new. Repository reviews are read-only unless I also request changes.
+
+When I say "Add this to my repository" or explicitly request saving/updating something, inspect existing work first. Improve or append related code/docs where appropriate, otherwise create a new well-organized project or topic. Place working code in a suitable project/module directory and learning references under engineering-reference/. Update indexes and links when relevant.
+
+For writes, branch from main, commit and verify changes, open a PR targeting main, and give me the PR URL and commit SHA. Never auto-merge, force-push, delete repositories, or change branch protections. Do not require manual Git commands or Codespaces. Use public or independently generated examples; never employer-proprietary details or secrets.
 ```
 
-Previous technical discussions are only in this knowledge base when explicitly committed. [Archived GitHub integration walkthrough](engineering-reference/references/github-integration-workflow.md).
+Only committed content is persisted in GitHub; unrelated previous chats are not automatically present. [GitHub integration walkthrough](engineering-reference/references/github-integration-workflow.md).

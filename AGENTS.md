@@ -1,25 +1,26 @@
-# Agent instructions — Platform Engineering Knowledge Base
+# Agent instructions — Platform Engineering Monorepo
 
-This repository is the source of truth for **committed** professional technical learning: guides, examples, troubleshooting, architecture, and references. It is not a transcript archive. `main` is the reference branch.
+This public repository is the **source of truth for committed professional platform-engineering work**: executable code, reusable modules, scripts, infrastructure examples, labs, architecture, troubleshooting, technical explanations, and curated references. It is not a chat transcript archive. Use `main` as the authoritative reference.
 
-## Triggers and skill selection
+## Select the appropriate workflow
 
-- On an ordinary technical question, answer normally. **Do not automatically access or change the repository.**
-- If asked to **review, search, compare, or check previous repository content**, use [repository-knowledge-review](.agents/skills/repository-knowledge-review/SKILL.md) to find relevant committed material and assess whether the topic is covered, related, or new. This is read-only unless publication is separately requested.
-- If asked to **save, enhance, append, publish, commit, or "Add this to my repository"**, use [knowledge-curation](.agents/skills/knowledge-curation/SKILL.md). Inspect existing material before deciding whether to update or add.
-- Do not claim awareness of past conversations unless their content is present in the current session or committed repository.
+- **Ordinary technical question:** Answer normally. Do not automatically inspect or modify GitHub.
+- **Asked to review/search/compare earlier repository work:** Read [repository-knowledge-review](.agents/skills/repository-knowledge-review/SKILL.md). Search **the whole repository**, including executable code and documentation. Report what already exists, related improvements, or whether a new project/topic is appropriate. This is **read-only** unless the user explicitly requests a change.
+- **Explicitly asked to create, enhance, save, update, append, commit, publish, or "Add this to my repository":** Read [knowledge-curation](.agents/skills/knowledge-curation/SKILL.md). Inspect existing implementations and documentation before choosing whether to extend, refactor, or add new content.
+- Do not claim to remember prior chats unless their relevant contents are available in the current conversation or committed files.
 
-## Content rules
+## Monorepo organization
 
-- Keep all educational material under `engineering-reference/`; consult and maintain `engineering-reference/INDEX.md`.
-- Prefer improving an existing relevant guide/example over creating a duplicate. Use dedicated new files for distinct concepts.
-- Include concise explanation, reproducible synthetic examples where useful, verification steps, tradeoffs, and authoritative primary-source references. Link related topics.
-- Never copy or recreate employer-proprietary code, identifiable internal architecture, secrets, accounts, or data. Code must be independent and safe to publish publicly.
-- Inspect currently committed files; do not treat a README index or old answer as evidence of contents without checking.
+- **Functional projects and code:** Keep self-contained projects, Terraform modules, scripts, manifests, pipelines, tests, and other executable artifacts in suitably named directories. Reuse existing project paths when relevant; create new top-level directories only when the content warrants them.
+- **Explanations and learning references:** Use `engineering-reference/` for guides, small educational examples, architecture, troubleshooting, and curated links. Maintain [the topic index](engineering-reference/INDEX.md) when its material changes.
+- **Related content:** Link explanations to implementations and related topics. Avoid redundant copies, near-duplicate examples, unnecessary subdirectories, and raw conversation dumps.
+- Keep runnable code complete where practical; include usage, validation, limitations, and authoritative sources where relevant. Do not claim tests were run unless they actually were.
+- This is a **public** repository. Use public documentation and independently generated, synthetic examples only. Never publish employer-proprietary code or internal architecture, accounts, identifiers, secrets, sensitive logs, or personal information.
+- Inspect actual files, rather than trusting an index or prior answer to represent current contents.
 
 ## GitHub changes
 
-- Only when explicitly authorized to publish: branch from `main`, edit files, commit on that branch, verify via GitHub read/compare, and open a PR against `main`.
-- Return direct PR link and commit SHA; **never merge automatically**.
-- No force-push, repository deletion, or branch-protection changes without explicit permission. No manual Git/Codespaces steps required of the user.
-- If GitHub is inaccessible or a commit fails, report this clearly; never claim success without verification.
+- **Only with explicit authorization to save/update:** Branch from `main`, edit the appropriate files, commit on that branch, verify commit and changed paths through GitHub, and open a PR targeting `main`.
+- Return the direct PR URL and commit SHA. **Never automatically merge into `main`.**
+- Never force-push, delete repositories, or change branch protections without explicit approval. Do not require the user to run Git commands or use Codespaces.
+- If GitHub access is missing or a step fails, report it; never claim success without verification.
