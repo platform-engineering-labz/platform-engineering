@@ -1,19 +1,21 @@
 flowchart LR
-  subgraph GITLAB["GitLab CI"]
-    A["Pipeline job"] --> B["Kubernetes executor"]
+  subgraph S0["SOURCE & CONTROL"]
+    direction TB
+    N0["GitLab pipeline and runner"] --> N1["Kubernetes executor schedules pod"]
   end
-  subgraph EKS["EKS workload boundary"]
-    B --> C["Buildah build container"]
-    C --> D["OCI image"]
-    C -. "Service account identity" .-> E["IRSA / STS"]
+  subgraph S1["EXECUTION & SECURITY BOUNDARY"]
+    direction TB
+    N2["Buildah builds OCI image"] --> N3["Service account assumes IAM role via IRSA"]
   end
-  subgraph AWS["AWS account"]
-    E --> F["Scoped IAM policy"]
-    F --> G["Amazon ECR"]
-    D -->|"Authenticated push"| G
+  N1 --> N2
+  subgraph S2["VERIFICATION & OPERATIONS"]
+    direction TB
+    N4["ECR authorization token"] --> N5["Push immutable image digest"]
   end
-  subgraph DEPLOY["Runtime pull"]
-    G --> H["Kubelet / ECR pull credentials"]
-  end
-  classDef identity fill:#eff6ff,stroke:#2563eb,color:#1e40af
-  class E,F identity
+  N3 --> N4
+  classDef blue fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#0F172A
+  classDef green fill:#E8F7F1,stroke:#059669,stroke-width:2px,color:#064E3B
+  classDef amber fill:#FFF4E5,stroke:#D97706,stroke-width:2px,color:#78350F
+  class N0,N1 blue
+  class N2,N3 green
+  class N4,N5 amber

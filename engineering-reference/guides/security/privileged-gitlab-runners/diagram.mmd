@@ -1,18 +1,21 @@
-flowchart TB
-  subgraph CONTROL["Policy and identity plane"]
-    A["GitLab runner scheduling"] --> B["Kyverno admission"]
-    B --> C["Dedicated tainted node pool"]
+flowchart LR
+  subgraph S0["SOURCE & CONTROL"]
+    direction TB
+    N0["GitLab build scheduling"] --> N1["Kyverno policy exception"]
   end
-  subgraph NODE["Disposable build node — elevated risk"]
-    C --> D["Privileged DinD job"]
-    D --> E["Host kernel boundary"]
+  subgraph S1["EXECUTION & SECURITY BOUNDARY"]
+    direction TB
+    N2["Dedicated tainted nodes"] --> N3["Privileged DinD pod and host-kernel risk"]
   end
-  subgraph GUARDS["Compensating controls"]
-    F["Calico / Cilium egress policy"] --> D
-    G["Scoped IRSA"] --> D
-    H["Karpenter node replacement"] --> C
+  N1 --> N2
+  subgraph S2["VERIFICATION & OPERATIONS"]
+    direction TB
+    N4["NetworkPolicy plus restricted IAM"] --> N5["Dispose nodes and review audit logs"]
   end
-  D --> I["Approved registry / proxy"]
-  D -. "Residual host compromise risk" .-> J["Threat model / incident response"]
-  classDef risk fill:#fff1f2,stroke:#be123c,color:#881337
-  class D,E,J risk
+  N3 --> N4
+  classDef blue fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#0F172A
+  classDef green fill:#E8F7F1,stroke:#059669,stroke-width:2px,color:#064E3B
+  classDef amber fill:#FFF4E5,stroke:#D97706,stroke-width:2px,color:#78350F
+  class N0,N1 blue
+  class N2,N3 green
+  class N4,N5 amber

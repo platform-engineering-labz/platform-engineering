@@ -1,23 +1,21 @@
 flowchart LR
-  subgraph PRE["Before upgrade"]
-    A["EKS control plane"] --> B["Node groups / Karpenter"]
-    A --> C["Managed add-ons"]
-    A --> D["Workloads / CRDs"]
+  subgraph S0["SOURCE & CONTROL"]
+    direction TB
+    N0["Assess EKS version & add-on support"] --> N1["Terraform change plan"]
   end
-  subgraph CHANGE["Change control"]
-    E["Compatibility assessment"] --> F["Upgrade"]
-    F --> G{"Health gates pass?"}
+  subgraph S1["EXECUTION & SECURITY BOUNDARY"]
+    direction TB
+    N2["Upgrade EKS control plane"] --> N3["Roll managed nodes"]
   end
-  subgraph RECOVER["Recovery"]
-    G -->|Yes| H["Promote baseline"]
-    G -->|No| I{"Rollback eligible?"}
-    I -->|Yes| J["AWS rollback API"]
-    I -->|No| K["Forward recovery"]
-    J --> L["Reconcile Terraform and add-ons"]
-    K --> L
+  N1 --> N2
+  subgraph S2["VERIFICATION & OPERATIONS"]
+    direction TB
+    N4["Validate workloads and add-ons"] --> N5["Rollback eligibility or forward recovery"]
   end
-  PRE --> E
-  classDef risk fill:#fff1f2,stroke:#be123c,color:#881337
-  classDef good fill:#ecfdf5,stroke:#047857,color:#065f46
-  class G,I risk
-  class H,L good
+  N3 --> N4
+  classDef blue fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#0F172A
+  classDef green fill:#E8F7F1,stroke:#059669,stroke-width:2px,color:#064E3B
+  classDef amber fill:#FFF4E5,stroke:#D97706,stroke-width:2px,color:#78350F
+  class N0,N1 blue
+  class N2,N3 green
+  class N4,N5 amber
