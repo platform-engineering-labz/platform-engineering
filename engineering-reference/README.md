@@ -1,9 +1,14 @@
-# Engineering Reference
+# Engineering reference
 
-This is the **technical knowledge** part of the [Platform Engineering monorepo](../README.md). It contains focused guides, reference examples, troubleshooting, architecture and curated documentation. Runnable integrated projects live in [labs](../labs/), shared implementations in [modules](../modules/), and development assets in [tooling](../tooling/).
+**Browse by concept:** [Platform engineering glossary](../README.md) → [topic index](INDEX.md) → overview → detailed analysis.
 
-Start with the [topic index](INDEX.md). Guides are organized by technologies and shared concerns (AWS, Kubernetes, Terraform, GitLab, GitOps, security, networking, storage, containers, Linux and observability); cross-cutting topics link to multiple labs or guides.
+This area contains platform-engineering research and design notes, not raw chat transcripts. Topic `README.md` files explain the problem and outcome briefly; `details.md` files contain analysis, validation and source links. Executable work belongs in [labs](../labs/), [modules](../modules/) or [tooling](../tooling/).
 
-Follow [content standards](references/content-standards.md) to preserve the question, concise answer, synthetic examples, verified results, tradeoffs, primary sources and related work. Existing directories may be empty: an index entry does not mean a guide exists.
+| Topic | Short overview |
+| --- | --- |
+| [Privileged GitLab runners](guides/security/privileged-gitlab-runners/README.md) | DinD risks and isolation priorities |
+| [Buildah and ECR](guides/gitlab/kubernetes-runner-buildah-ecr/README.md) | Secure image building and AWS authentication |
+| [EOL inventory](guides/security/kubernetes-workload-eol-inventory/README.md) | Flux, Helm, Terraform and EKS lifecycle coverage |
+| [EKS rollback](guides/aws/eks-upgrade-rollback/README.md) | Upgrade recovery and Terraform support |
 
-Never publish employer code, internal architecture, secrets, or identifying infrastructure details. See repository-wide [AGENTS.md](../AGENTS.md) and the root [ChatGPT recovery prompt](../README.md).
+Follow [content standards](references/content-standards.md) and publish only independently developed, non-sensitive material.
