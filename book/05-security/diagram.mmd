@@ -1,0 +1,12 @@
+flowchart LR
+  ROOT["Defense in depth"]
+  N0["Admission policy"]
+  ROOT --> N0
+  N1["Node isolation"]
+  N0 --> N1
+  N2["Network policy"]
+  N1 --> N2
+  N3["IAM identity"]
+  N2 --> N3
+  N4["Audit"]
+  N3 --> N4
