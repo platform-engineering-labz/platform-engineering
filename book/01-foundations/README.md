@@ -1,5 +1,10 @@
 # Part I — Foundations
 
+![Kubernetes workload and security foundations](diagram.png)
+
+[Open the overview PNG](diagram.png)
+
+
 Platform engineering builds repeatable environments by combining operating systems, containers, orchestration, identity and networks. A container packages a process and dependencies; Kubernetes schedules and reconciles containers, but does not by itself guarantee workload isolation or lifecycle support.
 
 ## Concepts to establish
