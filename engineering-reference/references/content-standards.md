@@ -1,44 +1,26 @@
-# Knowledge and project content standards
+# Documentation standards
 
-Use this guide to keep a large platform engineering monorepo navigable and avoid duplicate research or implementations.
+Use progressive disclosure: **[root glossary](../../README.md) → [topic index](../INDEX.md) → topic README → details.md → implementation**.
 
-## Decide where content belongs
+| Level | File | Content |
+| --- | --- | --- |
+| 1 | Root `README.md` | Alphabetical, one-line glossary with links; no lengthy explanations |
+| 2 | Topic `README.md` | Problem, concise answer, 3–5 impact-ranked recommendations, next links |
+| 3 | Topic `details.md` | Deeper analysis, tradeoffs, validation and authoritative sources |
+| 4 | `labs/`, `modules/`, `tooling/` | Runnable code, usage, dependencies and verified tests |
 
-- **`engineering-reference/guides/`**: concepts, how a technology works, tradeoffs and official sources.
-- **`engineering-reference/examples/`**: short, focused teaching examples that accompany guides.
-- **`engineering-reference/troubleshooting/`**: errors, diagnostic commands, root causes and remediation.
-- **`engineering-reference/architecture/`**: design alternatives, diagrams and decisions.
-- **`labs/`**: runnable integrated scenarios involving several components.
-- **`modules/`**: reusable infrastructure components shared across labs.
-- **`tooling/`**: container images, scripts, local/devcontainer tooling and validation.
-- **`.agents/skills/`**: task-specific AI guidance; **`AGENTS.md`** is the repository-wide policy.
+For a new topic, search the **entire repository** first. Enhance the canonical guide instead of creating duplicates. Use relative Markdown links, descriptive link text and cross-links between related subjects. Never link to nonexistent implementations as if they were completed.
 
-Search existing content across *all* these locations before creating new material. If the same concept already has a canonical guide, update it and link to the implementation instead of duplicating explanations.
+Keep recommendations in a compact table with priority (`P0` critical, `P1` high, `P2` medium), action and reason. Distinguish **verified**, **proposed**, and **unknown** claims. Cite primary documentation and note time/version sensitivity. Avoid irrelevant conversation drift, private infrastructure, secrets and employer material.
 
-## Suggested metadata for substantial Markdown guides
+Place detailed code examples in reusable implementation folders rather than inflating overviews. Update the root glossary and topic index whenever a new canonical topic is published.
 
-```yaml
----
-title: Example: GitLab Runner isolation on EKS
-topics: [gitlab, kubernetes, eks, network-security, iam]
-status: draft
-last-reviewed: YYYY-MM-DD
-related:
-  - labs/gitlab-runners-on-eks/
-  - engineering-reference/guides/kubernetes/
----
-```
+## Optional website
 
-Replace the placeholders, omit non-existent `related` links, and set `last-reviewed` only after an actual review. This metadata is descriptive and not yet indexed automatically.
+Markdown must remain readable in GitHub and compatible with MkDocs. A future MkDocs Material site can provide full-text search, navigation and glossary browsing; deploy via GitHub Pages or GitLab Pages only after the publishing workflow is explicitly selected. Do not assume a site is live.
 
-## Suggested sections
+## Ebook illustration policy
 
-1. **Question / objective:** What problem is being explored?
-2. **Short answer:** Current conclusion with known caveats.
-3. **Implementation / example:** Synthetic, reusable code where appropriate.
-4. **Verification:** What was actually tested, with commands and results; clearly label anything untested.
-5. **Tradeoffs / security:** Alternatives, limitations, blast radius.
-6. **References:** Direct links to primary authoritative sources and version/date context.
-7. **Related content:** Links to canonical guides, existing labs, or reusable modules.
+Use a **topic-specific PNG** where a visual clarifies architecture, data flow, trust boundaries, state transitions or operational decision-making. Place `diagram.png` next to the chapter or topic README that embeds it, with descriptive alt text. Link to a deeper technical guide rather than treating the picture as the implementation. Prefer one meaningful diagram to decorative screenshots or duplicated generic illustrations. Do not add images to empty placeholders or directories that have no substantive content.
 
-When updating an existing page, replace outdated information or append genuinely new findings. Keep the history in Git; do not paste full chat transcripts. All published content must be safe for a public repository.
+Review every diagram against the associated analysis: distinguish desired from actual state, permissions from isolation, and compatibility from EOL. Keep labels legible at ebook width, preserve the explanatory text for search/accessibility, and verify that every image link resolves. If a visual repeats an existing guide diagram in a chapter introduction, keep the copies synchronized when the underlying explanation changes.

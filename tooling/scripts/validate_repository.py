@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Validate local Markdown links in this repository using Python's stdlib."""
+"""Validate local Markdown links and image references in this repository using Python's stdlib."""
 
 from pathlib import Path
 import re
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
-LINK = re.compile(r"(?<!!)\[[^\]\n]+\]\(([^)\n]+)\)")
+LINK = re.compile(r"!?\[[^\]\n]*\]\(([^)\n]+)\)")
 FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
 REQUIRED = ("README.md", "AGENTS.md", "engineering-reference/INDEX.md")
 

@@ -1,37 +1,16 @@
-# Engineering reference index
+# Topic index
 
-This is the navigation hub for **committed** engineering explanations; it is not a complete inventory of past ChatGPT conversations. For executable multi-component work, see [labs](../labs/), [reusable modules](../modules/), and [tooling](../tooling/).
+[← Glossary](../README.md) · [Reference overview](README.md)
 
-## Guides by technology and function
+Browse published topic overviews. Each overview links to its detailed analysis.
 
-| Area | Directory | Typical scope |
+| Area | Topic | Purpose |
 | --- | --- | --- |
-| AWS | [guides/aws/](guides/aws/) | EKS, VPC, IAM, EC2, ECR, storage drivers |
-| Kubernetes | [guides/kubernetes/](guides/kubernetes/) | Pods, controllers, scheduling, RBAC, admission |
-| Terraform | [guides/terraform/](guides/terraform/) | Providers, modules, state, environments |
-| GitLab | [guides/gitlab/](guides/gitlab/) | CI/CD, runners, workspaces |
-| GitOps | [guides/gitops/](guides/gitops/) | Flux, Helm, reconciliation |
-| Security | [guides/security/](guides/security/) | Identity, policy, supply chain, EOL |
-| Networking | [guides/networking/](guides/networking/) | Calico, Cilium, CNI, NetworkPolicy |
-| Storage | [guides/storage/](guides/storage/) | CSI, EBS, EFS and persistence |
-| Containers | [guides/containers/](guides/containers/) | Docker, Buildah, Podman, runtime isolation |
-| Linux | [guides/linux/](guides/linux/) | System tools, Bash, Python environments |
-| Observability | [guides/observability/](guides/observability/) | Diagnostics, metrics, logging, monitoring |
+| AWS / Terraform | [EKS upgrade and rollback](guides/aws/eks-upgrade-rollback/README.md) | Upgrade risk, recovery and provider capabilities |
+| GitLab / Containers | [Buildah and ECR](guides/gitlab/kubernetes-runner-buildah-ecr/README.md) | Image builds and workload identity |
+| Kubernetes / Security | [Privileged runner isolation](guides/security/privileged-gitlab-runners/README.md) | DinD risk and mitigations |
+| Flux / Helm / Security | [EOL scanning](guides/security/kubernetes-workload-eol-inventory/README.md) | Dependency lifecycle and support gaps |
 
-## Other reference formats
+Other subject areas planned for future content: GitOps, networking, storage, observability, Linux and reusable infrastructure. [Examples](examples/) · [Architecture](architecture/) · [Troubleshooting](troubleshooting/) · [Sources and standards](references/).
 
-- [Small teaching examples](examples/)
-- [Troubleshooting](troubleshooting/)
-- [Architecture and design decisions](architecture/)
-- [Curated references and content conventions](references/)
-- [Content standards and cross-topic metadata](references/content-standards.md)
-
-## Search and knowledge reuse
-
-When a question crosses areas, look for both technology tags and end-to-end scenarios. For example, GitLab Runner DinD isolation may relate to Kubernetes privileged workloads, AWS workload identity, Calico networking, Karpenter and ECR registry controls.
-
-A repository review should search **the entire repository**, not only these folders. Prefer a canonical guide plus links to runnable code. Use the [standards](references/content-standards.md) for topic tags and related paths.
-
-## Published topic guides
-
-None yet. Directories and scenario roadmaps are placeholders until their content is implemented and reviewed. Add links to **actual** guides/labs here as they are published.
+These are curated published topics, **not** a complete inventory of pinned conversations. Excluded discussions remain excluded.

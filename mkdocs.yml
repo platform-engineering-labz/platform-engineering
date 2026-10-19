@@ -1,0 +1,66 @@
+site_name: Platform Engineering Handbook
+site_description: A progressively structured, searchable platform engineering technical handbook
+site_url: https://platform-engineering-labz.github.io/platform-engineering/
+repo_url: https://github.com/platform-engineering-labz/platform-engineering
+repo_name: platform-engineering-labz/platform-engineering
+docs_dir: .
+site_dir: /tmp/platform-engineering-handbook-site
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+nav:
+  - Start here: README.md
+  - Reading guide: book/README.md
+  - Part I — Foundations:
+      - Overview: book/01-foundations/README.md
+  - Part II — AWS and Infrastructure:
+      - Overview: book/02-infrastructure/README.md
+      - EKS upgrade and rollback: engineering-reference/guides/aws/eks-upgrade-rollback/README.md
+      - Detailed analysis: engineering-reference/guides/aws/eks-upgrade-rollback/details.md
+  - Part III — Containers and CI/CD:
+      - Overview: book/03-cicd/README.md
+      - Buildah and ECR: engineering-reference/guides/gitlab/kubernetes-runner-buildah-ecr/README.md
+      - Detailed analysis: engineering-reference/guides/gitlab/kubernetes-runner-buildah-ecr/details.md
+  - Part IV — GitOps and Deployment:
+      - Overview: book/04-gitops/README.md
+  - Part V — Security:
+      - Overview: book/05-security/README.md
+      - Privileged GitLab runners: engineering-reference/guides/security/privileged-gitlab-runners/README.md
+      - Detailed analysis: engineering-reference/guides/security/privileged-gitlab-runners/details.md
+  - Part VI — Operations:
+      - Overview: book/06-operations/README.md
+      - EOL inventory: engineering-reference/guides/security/kubernetes-workload-eol-inventory/README.md
+      - Detailed analysis: engineering-reference/guides/security/kubernetes-workload-eol-inventory/details.md
+  - Part VII — Practical Work:
+      - Overview: book/07-practice/README.md
+  - Reference:
+      - Topic index: engineering-reference/INDEX.md
+      - Engineering reference: engineering-reference/README.md
+      - Writing standards: engineering-reference/references/content-standards.md
+      - GitHub workflow: engineering-reference/references/github-integration-workflow.md
