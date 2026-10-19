@@ -1,0 +1,19 @@
+flowchart LR
+  subgraph GITLAB["GitLab CI"]
+    A["Pipeline job"] --> B["Kubernetes executor"]
+  end
+  subgraph EKS["EKS workload boundary"]
+    B --> C["Buildah build container"]
+    C --> D["OCI image"]
+    C -. "Service account identity" .-> E["IRSA / STS"]
+  end
+  subgraph AWS["AWS account"]
+    E --> F["Scoped IAM policy"]
+    F --> G["Amazon ECR"]
+    D -->|"Authenticated push"| G
+  end
+  subgraph DEPLOY["Runtime pull"]
+    G --> H["Kubelet / ECR pull credentials"]
+  end
+  classDef identity fill:#eff6ff,stroke:#2563eb,color:#1e40af
+  class E,F identity
