@@ -2,6 +2,10 @@
 
 A concise, linked glossary of platform-engineering concepts, research and reusable implementations. **Start with a term, open its topic overview, then follow links to deeper analysis, primary sources or working code.** Only published material is linked as a completed guide.
 
+**[Read the handbook in chapter order →](book/README.md)** · [Browse topics](engineering-reference/INDEX.md) · [Searchable website setup](book/README.md#table-of-contents)
+
+The website's built-in search is available when the MkDocs site is published; GitHub's repository search remains available meanwhile.
+
 ## Glossary
 
 | Term | What it means | Learn more |
