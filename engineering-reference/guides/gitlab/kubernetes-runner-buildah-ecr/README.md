@@ -2,6 +2,8 @@
 
 [← Glossary](../../../../README.md) · [Topic index](../../../INDEX.md)
 
+![GitLab Buildah to ECR workflow](diagram.png)
+
 ## Problem
 CI image builds require ECR authentication without static AWS credentials or unnecessary privileged DinD.
 
