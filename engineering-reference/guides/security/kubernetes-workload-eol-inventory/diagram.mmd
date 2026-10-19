@@ -1,0 +1,35 @@
+flowchart LR
+  subgraph INPUT["Declared and observed inventory"]
+    A["Flux HelmRelease / OCIRepository"]
+    B["Terraform EKS / add-ons"]
+    C["Rendered container images"]
+    D["Optional live cluster state"]
+  end
+  subgraph PROCESS["Lifecycle evaluation"]
+    E["Resolve component + version"]
+    F["Official upstream policy"]
+    G["endoflife.date mapping"]
+    H["AWS add-on compatibility"]
+    I{"Evidence complete?"}
+  end
+  subgraph OUTPUT["GitLab CI output"]
+    J["Supported / warning / EOL"]
+    K["Unknown / unmapped / unpinned"]
+    L["Report + remediation owner"]
+  end
+  A --> E
+  B --> E
+  C --> E
+  D --> E
+  E --> F
+  E --> G
+  E --> H
+  F --> I
+  G --> I
+  H --> I
+  I -->|Yes| J
+  I -->|No| K
+  J --> L
+  K --> L
+  classDef uncertain fill:#fffbeb,stroke:#d97706,color:#92400e
+  class K uncertain
