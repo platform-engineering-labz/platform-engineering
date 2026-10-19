@@ -1,5 +1,10 @@
 # Developer tooling
 
+![Platform development and CI workflow](diagram.png)
+
+[Open the overview PNG](diagram.png)
+
+
 Development assets shared across labs and modules live here.
 
 - [Container images](container-images/) — custom tools/runner images and secure build examples when added.
