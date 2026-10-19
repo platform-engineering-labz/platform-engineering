@@ -1,5 +1,10 @@
 # Reading the handbook
 
+![Handbook topic map](diagram.png)
+
+[Open the overview PNG](diagram.png)
+
+
 This is a **technical book with two reading modes**:
 
 1. **Read in order:** Foundations → Infrastructure → CI/CD → GitOps → Security → Operations → Practice. Each part introduces the concepts needed by later chapters.
