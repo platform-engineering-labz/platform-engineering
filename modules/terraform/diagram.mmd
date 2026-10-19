@@ -1,12 +1,24 @@
 flowchart LR
-  ROOT["Terraform modules"]
-  N0["Inputs"]
-  ROOT --> N0
-  N1["Resources"]
-  N0 --> N1
-  N2["Outputs"]
-  N1 --> N2
-  N3["Version pinning"]
-  N2 --> N3
-  N4["Validation"]
-  N3 --> N4
+ subgraph S1["01 · Module contract"]
+  direction TB
+  A["Provider constraints"] --> B["Input variables"]
+ end
+ subgraph S2["02 · Resource graph"]
+  direction TB
+  C["AWS resources"] --> D["IAM boundaries"]
+ end
+ subgraph S3["03 · Integration"]
+  direction TB
+  E["Outputs"] --> F["Plan & validation"]
+ end
+ B -->|"defines"| C
+ D -->|"verifies"| E
+ classDef blue fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#172554
+ classDef teal fill:#E7F7F1,stroke:#059669,stroke-width:2px,color:#064E3B
+ classDef amber fill:#FFF3E5,stroke:#D97706,stroke-width:2px,color:#78350F
+ class A,B blue
+ class C,D teal
+ class E,F amber
+ style S1 fill:#F8FAFC,stroke:#CBD5E1
+ style S2 fill:#F0FBF6,stroke:#A3D9C0
+ style S3 fill:#FFFAF2,stroke:#F0D4A2
