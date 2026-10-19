@@ -1,0 +1,40 @@
+name: Build professional architecture atlas
+
+on:
+  push:
+    branches:
+      - docs/professional-architecture-atlas-20261019
+    paths:
+      - 'tooling/diagrams/architecture-atlas.json'
+      - 'tooling/diagrams/render_atlas.py'
+      - '.github/workflows/architecture-atlas.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: architecture-atlas-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install SVG and PNG renderer
+        run: python -m pip install cairosvg==2.8.2
+      - name: Generate all 20 architecture diagrams
+        run: python tooling/diagrams/render_atlas.py
+      - name: Commit generated SVG and PNG artifacts
+        run: |
+          git add -- '**/diagram.svg' '**/diagram.png' diagram.svg diagram.png
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "docs: render bespoke architecture atlas illustrations"
+            git push
+          fi

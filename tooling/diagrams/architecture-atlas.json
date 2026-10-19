@@ -1,0 +1,1426 @@
+{
+  "": {
+    "title": "Platform Engineering Encyclopedia",
+    "subtitle": "Architecture, delivery, security and operations • technical knowledge map",
+    "layout": "hub",
+    "note": "Start with concepts, follow implementation references, validate every recommendation.",
+    "stages": [
+      {
+        "zone": "Knowledge hub",
+        "items": [
+          [
+            "Platform reference",
+            "Searchable subject index",
+            "database",
+            "Linked research and sources"
+          ]
+        ]
+      },
+      {
+        "zone": "Infrastructure",
+        "items": [
+          [
+            "AWS & Kubernetes",
+            "Terraform, EKS, networking",
+            "cloud"
+          ]
+        ]
+      },
+      {
+        "zone": "Delivery",
+        "items": [
+          [
+            "CI/CD & GitOps",
+            "GitLab, Buildah, Flux",
+            "pipeline"
+          ]
+        ]
+      },
+      {
+        "zone": "Security",
+        "items": [
+          [
+            "Defense in depth",
+            "Identity, policy, isolation",
+            "shield"
+          ]
+        ]
+      },
+      {
+        "zone": "Operations",
+        "items": [
+          [
+            "Lifecycle & labs",
+            "Upgrades, EOL, practice",
+            "clock"
+          ]
+        ]
+      }
+    ]
+  },
+  "book": {
+    "title": "Platform Engineering Handbook",
+    "subtitle": "Progressive reading paths from platform foundations to production operations",
+    "layout": "pipeline",
+    "note": "Chapter illustrations link to deeper technical research and implementation examples.",
+    "stages": [
+      {
+        "zone": "Foundations",
+        "items": [
+          [
+            "Linux & OCI",
+            "Kernel, images, runtime",
+            "cube"
+          ],
+          [
+            "Kubernetes",
+            "Control and data planes",
+            "kubernetes"
+          ],
+          [
+            "Networking",
+            "Services, DNS, CNI",
+            "cloud"
+          ]
+        ]
+      },
+      {
+        "zone": "Infrastructure",
+        "items": [
+          [
+            "Terraform",
+            "Versioned infrastructure",
+            "build"
+          ],
+          [
+            "Amazon EKS",
+            "Control plane and compute",
+            "cluster"
+          ],
+          [
+            "Add-ons",
+            "Storage and networking",
+            "database"
+          ]
+        ]
+      },
+      {
+        "zone": "Delivery",
+        "items": [
+          [
+            "GitLab CI",
+            "Build and test pipelines",
+            "git"
+          ],
+          [
+            "Buildah & ECR",
+            "Secure OCI publishing",
+            "registry"
+          ],
+          [
+            "Flux GitOps",
+            "Declarative reconciliation",
+            "flux"
+          ]
+        ]
+      },
+      {
+        "zone": "Operations",
+        "items": [
+          [
+            "Policy",
+            "IAM, Kyverno, network",
+            "shield"
+          ],
+          [
+            "Lifecycle",
+            "Upgrades and support",
+            "clock"
+          ],
+          [
+            "Labs",
+            "Reproducible examples",
+            "terminal"
+          ]
+        ]
+      }
+    ]
+  },
+  "book/01-foundations": {
+    "title": "Container & Kubernetes Foundations",
+    "subtitle": "Understand the runtime, orchestrator and network layers",
+    "layout": "layers",
+    "note": "Namespaces and cgroups provide isolation; containers share the host kernel.",
+    "stages": [
+      {
+        "zone": "Application layer",
+        "items": [
+          [
+            "Workload Pods",
+            "Containers and sidecars",
+            "pod"
+          ],
+          [
+            "Services",
+            "Stable network discovery",
+            "cloud"
+          ],
+          [
+            "Policies",
+            "RBAC and admission",
+            "shield"
+          ]
+        ]
+      },
+      {
+        "zone": "Kubernetes orchestration",
+        "items": [
+          [
+            "API Server",
+            "Desired state entry point",
+            "cluster"
+          ],
+          [
+            "Scheduler",
+            "Node placement",
+            "clock"
+          ],
+          [
+            "Controllers",
+            "Continuous convergence",
+            "lifecycle"
+          ]
+        ]
+      },
+      {
+        "zone": "Container runtime",
+        "items": [
+          [
+            "OCI images",
+            "Layers and manifests",
+            "cube"
+          ],
+          [
+            "Runtime",
+            "containerd / CRI-O",
+            "build"
+          ],
+          [
+            "CNI & CSI",
+            "Networking and volumes",
+            "database"
+          ]
+        ]
+      },
+      {
+        "zone": "Linux host",
+        "items": [
+          [
+            "Namespaces",
+            "Process isolation",
+            "shield"
+          ],
+          [
+            "cgroups",
+            "Resource limits",
+            "clock"
+          ],
+          [
+            "Shared kernel",
+            "Host trust boundary",
+            "terminal"
+          ]
+        ]
+      }
+    ]
+  },
+  "book/02-infrastructure": {
+    "title": "AWS & EKS Infrastructure",
+    "subtitle": "Terraform-managed platform architecture and infrastructure boundaries",
+    "layout": "layers",
+    "note": "EKS control plane is AWS-managed; customer workloads run on configured compute.",
+    "stages": [
+      {
+        "zone": "Infrastructure as code",
+        "items": [
+          [
+            "Terraform",
+            "Modules and state",
+            "build"
+          ],
+          [
+            "AWS IAM",
+            "Least-privilege roles",
+            "iam"
+          ],
+          [
+            "Version control",
+            "Reviewed changes",
+            "git"
+          ]
+        ]
+      },
+      {
+        "zone": "AWS networking",
+        "items": [
+          [
+            "Amazon VPC",
+            "Public/private subnets",
+            "cloud"
+          ],
+          [
+            "Security Groups",
+            "Traffic boundaries",
+            "shield"
+          ],
+          [
+            "Load balancing",
+            "Ingress routing",
+            "cloud"
+          ]
+        ]
+      },
+      {
+        "zone": "Amazon EKS",
+        "items": [
+          [
+            "Control plane",
+            "Managed Kubernetes API",
+            "cluster"
+          ],
+          [
+            "Worker nodes",
+            "Managed node groups",
+            "pod"
+          ],
+          [
+            "Karpenter",
+            "Dynamic node provisioning",
+            "clock"
+          ]
+        ]
+      },
+      {
+        "zone": "Platform add-ons",
+        "items": [
+          [
+            "VPC CNI",
+            "Pod networking",
+            "cloud"
+          ],
+          [
+            "EBS CSI",
+            "Persistent storage",
+            "database"
+          ],
+          [
+            "CoreDNS",
+            "Service discovery",
+            "cluster"
+          ]
+        ]
+      }
+    ]
+  },
+  "book/03-cicd": {
+    "title": "Secure Container CI/CD",
+    "subtitle": "From GitLab merge request to immutable OCI artifact",
+    "layout": "pipeline",
+    "note": "Build credentials are scoped to the job; registry writes use short-lived AWS identity.",
+    "stages": [
+      {
+        "zone": "Source & review",
+        "items": [
+          [
+            "GitLab repository",
+            "Merge request checks",
+            "git"
+          ],
+          [
+            "Pipeline definition",
+            "Stages and job rules",
+            "pipeline"
+          ]
+        ]
+      },
+      {
+        "zone": "Ephemeral execution",
+        "items": [
+          [
+            "Kubernetes Runner",
+            "Executor schedules pods",
+            "runner"
+          ],
+          [
+            "Buildah",
+            "OCI build in job pod",
+            "build"
+          ]
+        ]
+      },
+      {
+        "zone": "Artifact assurance",
+        "items": [
+          [
+            "Image scanning",
+            "Vulnerability findings",
+            "shield"
+          ],
+          [
+            "SBOM / provenance",
+            "Supply-chain evidence",
+            "database"
+          ]
+        ]
+      },
+      {
+        "zone": "Registry & release",
+        "items": [
+          [
+            "Amazon ECR",
+            "Push by digest",
+            "registry"
+          ],
+          [
+            "GitOps update",
+            "Deploy approved image",
+            "flux"
+          ]
+        ]
+      }
+    ]
+  },
+  "book/04-gitops": {
+    "title": "Flux GitOps Architecture",
+    "subtitle": "Git as desired state, Kubernetes controllers as reconciliation engine",
+    "layout": "pipeline",
+    "note": "GitOps is continuous reconciliation, not a one-time deployment script.",
+    "stages": [
+      {
+        "zone": "Declarative source",
+        "items": [
+          [
+            "Git repository",
+            "Versioned manifests",
+            "git"
+          ],
+          [
+            "OCI / Helm",
+            "Chart artifacts",
+            "registry"
+          ]
+        ]
+      },
+      {
+        "zone": "Flux source",
+        "items": [
+          [
+            "Source controller",
+            "Fetch and verify",
+            "flux"
+          ],
+          [
+            "Artifact cache",
+            "Resolved revision",
+            "database"
+          ]
+        ]
+      },
+      {
+        "zone": "Reconciliation",
+        "items": [
+          [
+            "Kustomize controller",
+            "Apply Kubernetes YAML",
+            "cluster"
+          ],
+          [
+            "Helm controller",
+            "Manage Helm releases",
+            "cube"
+          ]
+        ]
+      },
+      {
+        "zone": "Runtime state",
+        "items": [
+          [
+            "Kubernetes API",
+            "Apply desired resources",
+            "cluster"
+          ],
+          [
+            "Health checks",
+            "Drift and readiness",
+            "clock"
+          ]
+        ]
+      }
+    ]
+  },
+  "book/05-security": {
+    "title": "Kubernetes Defense in Depth",
+    "subtitle": "Identity, admission, node isolation and network enforcement",
+    "layout": "hub",
+    "note": "No single policy eliminates the host risk of privileged containers.",
+    "stages": [
+      {
+        "zone": "Protected workloads",
+        "items": [
+          [
+            "EKS workloads",
+            "Pods and namespaces",
+            "cluster",
+            "Separate trust domains"
+          ]
+        ]
+      },
+      {
+        "zone": "Identity",
+        "items": [
+          [
+            "IRSA / IAM",
+            "Scoped AWS permissions",
+            "iam"
+          ]
+        ]
+      },
+      {
+        "zone": "Admission",
+        "items": [
+          [
+            "Kyverno",
+            "Validate and mutate",
+            "policy"
+          ]
+        ]
+      },
+      {
+        "zone": "Network",
+        "items": [
+          [
+            "Cilium / Calico",
+            "Pod ingress and egress",
+            "shield"
+          ]
+        ]
+      },
+      {
+        "zone": "Runtime",
+        "items": [
+          [
+            "Node isolation",
+            "Taints and ephemeral nodes",
+            "pod"
+          ]
+        ]
+      }
+    ]
+  },
+  "book/06-operations": {
+    "title": "Platform Lifecycle Operations",
+    "subtitle": "Inventory, assess, upgrade and continuously verify cluster health",
+    "layout": "pipeline",
+    "note": "Support status requires upstream evidence and EKS add-on compatibility checks.",
+    "stages": [
+      {
+        "zone": "Discover",
+        "items": [
+          [
+            "Version inventory",
+            "Helm, Terraform, images",
+            "database"
+          ],
+          [
+            "Cluster state",
+            "Installed components",
+            "cluster"
+          ]
+        ]
+      },
+      {
+        "zone": "Assess",
+        "items": [
+          [
+            "Support policies",
+            "Official release windows",
+            "clock"
+          ],
+          [
+            "Compatibility",
+            "Kubernetes and add-ons",
+            "shield"
+          ]
+        ]
+      },
+      {
+        "zone": "Plan",
+        "items": [
+          [
+            "Risk-ranked change",
+            "Owners and dependencies",
+            "pipeline"
+          ],
+          [
+            "Rollback strategy",
+            "Eligibility and limits",
+            "clock"
+          ]
+        ]
+      },
+      {
+        "zone": "Validate",
+        "items": [
+          [
+            "Health gates",
+            "Readiness and SLOs",
+            "shield"
+          ],
+          [
+            "Remediation",
+            "Evidence and follow-up",
+            "terminal"
+          ]
+        ]
+      }
+    ]
+  },
+  "book/07-practice": {
+    "title": "Practical Platform Engineering Labs",
+    "subtitle": "Reproducible exercises connecting infrastructure, delivery and operations",
+    "layout": "pipeline",
+    "note": "Every lab should include prerequisites, verification evidence and teardown.",
+    "stages": [
+      {
+        "zone": "Prepare",
+        "items": [
+          [
+            "Requirements",
+            "Scope and objectives",
+            "database"
+          ],
+          [
+            "Toolchain",
+            "Pinned versions",
+            "terminal"
+          ]
+        ]
+      },
+      {
+        "zone": "Provision",
+        "items": [
+          [
+            "Terraform",
+            "Create AWS resources",
+            "cloud"
+          ],
+          [
+            "Amazon EKS",
+            "Deploy cluster components",
+            "cluster"
+          ]
+        ]
+      },
+      {
+        "zone": "Integrate",
+        "items": [
+          [
+            "GitLab CI",
+            "Build and publish",
+            "git"
+          ],
+          [
+            "Flux",
+            "Deploy desired state",
+            "flux"
+          ]
+        ]
+      },
+      {
+        "zone": "Verify",
+        "items": [
+          [
+            "Test evidence",
+            "Functional and security",
+            "shield"
+          ],
+          [
+            "Cleanup",
+            "Destroy resources",
+            "clock"
+          ]
+        ]
+      }
+    ]
+  },
+  "engineering-reference": {
+    "title": "Engineering Reference Library",
+    "subtitle": "Canonical research topics with decisions, evidence and implementation links",
+    "layout": "hub",
+    "note": "Each topic is independently readable and linked to related chapters and labs.",
+    "stages": [
+      {
+        "zone": "Reference index",
+        "items": [
+          [
+            "Topic catalog",
+            "Search and navigation",
+            "database",
+            "Canonical knowledge"
+          ]
+        ]
+      },
+      {
+        "zone": "Architecture",
+        "items": [
+          [
+            "System overview",
+            "Trust and data flows",
+            "cluster"
+          ]
+        ]
+      },
+      {
+        "zone": "Decisions",
+        "items": [
+          [
+            "Recommendations",
+            "Trade-offs and risks",
+            "shield"
+          ]
+        ]
+      },
+      {
+        "zone": "Evidence",
+        "items": [
+          [
+            "Primary sources",
+            "Official documentation",
+            "git"
+          ]
+        ]
+      },
+      {
+        "zone": "Implementation",
+        "items": [
+          [
+            "Examples & labs",
+            "Reusable working code",
+            "terminal"
+          ]
+        ]
+      }
+    ]
+  },
+  "labs": {
+    "title": "Platform Integration Lab Architecture",
+    "subtitle": "A realistic end-to-end EKS, CI/CD and GitOps validation environment",
+    "layout": "pipeline",
+    "note": "Labs are illustrative until deployed and validated; do not imply a running environment.",
+    "stages": [
+      {
+        "zone": "Provision",
+        "items": [
+          [
+            "Terraform",
+            "VPC, IAM and EKS",
+            "cloud"
+          ],
+          [
+            "Managed compute",
+            "Nodes and add-ons",
+            "cluster"
+          ]
+        ]
+      },
+      {
+        "zone": "Build",
+        "items": [
+          [
+            "GitLab Runner",
+            "Kubernetes executor",
+            "runner"
+          ],
+          [
+            "Buildah",
+            "Build OCI image",
+            "build"
+          ]
+        ]
+      },
+      {
+        "zone": "Publish",
+        "items": [
+          [
+            "AWS STS / IRSA",
+            "Short-lived credentials",
+            "iam"
+          ],
+          [
+            "Amazon ECR",
+            "Immutable image digest",
+            "registry"
+          ]
+        ]
+      },
+      {
+        "zone": "Deploy & verify",
+        "items": [
+          [
+            "Flux controllers",
+            "Helm and Kustomize",
+            "flux"
+          ],
+          [
+            "EKS workloads",
+            "Health and policy checks",
+            "pod"
+          ]
+        ]
+      }
+    ]
+  },
+  "modules": {
+    "title": "Reusable Infrastructure Modules",
+    "subtitle": "Typed interfaces, secure defaults and verified consumption",
+    "layout": "layers",
+    "note": "Module contracts are versioned; consuming environments own backend and credentials.",
+    "stages": [
+      {
+        "zone": "Consumer contract",
+        "items": [
+          [
+            "Root configuration",
+            "Providers and backends",
+            "build"
+          ],
+          [
+            "Module inputs",
+            "Typed variables",
+            "database"
+          ],
+          [
+            "Version pins",
+            "Release constraints",
+            "git"
+          ]
+        ]
+      },
+      {
+        "zone": "Reusable implementation",
+        "items": [
+          [
+            "Resource graph",
+            "Terraform resources",
+            "cloud"
+          ],
+          [
+            "IAM boundaries",
+            "Least-privilege roles",
+            "shield"
+          ],
+          [
+            "Outputs",
+            "Public module interface",
+            "database"
+          ]
+        ]
+      },
+      {
+        "zone": "Quality gates",
+        "items": [
+          [
+            "terraform fmt",
+            "Formatting",
+            "terminal"
+          ],
+          [
+            "terraform validate",
+            "Schema validation",
+            "shield"
+          ],
+          [
+            "Plan review",
+            "Human approval",
+            "git"
+          ]
+        ]
+      }
+    ]
+  },
+  "modules/terraform": {
+    "title": "Terraform Module Lifecycle",
+    "subtitle": "Inputs, resource graph, outputs and state management",
+    "layout": "pipeline",
+    "note": "Terraform state and provider credentials require deliberate access controls.",
+    "stages": [
+      {
+        "zone": "Inputs",
+        "items": [
+          [
+            "Variables",
+            "Validated interfaces",
+            "database"
+          ],
+          [
+            "Provider config",
+            "Pinned versions",
+            "build"
+          ]
+        ]
+      },
+      {
+        "zone": "Planning",
+        "items": [
+          [
+            "Terraform graph",
+            "Dependency resolution",
+            "pipeline"
+          ],
+          [
+            "State backend",
+            "Locking and encryption",
+            "database"
+          ]
+        ]
+      },
+      {
+        "zone": "Apply",
+        "items": [
+          [
+            "AWS resources",
+            "IAM, VPC, EKS",
+            "cloud"
+          ],
+          [
+            "Outputs",
+            "References for callers",
+            "terminal"
+          ]
+        ]
+      },
+      {
+        "zone": "Verify",
+        "items": [
+          [
+            "Plan review",
+            "Change approval",
+            "git"
+          ],
+          [
+            "Drift checks",
+            "Reconciliation signal",
+            "clock"
+          ]
+        ]
+      }
+    ]
+  },
+  "tooling": {
+    "title": "Platform Engineering Toolchain",
+    "subtitle": "Versioned tools, containerized environments and automated quality gates",
+    "layout": "pipeline",
+    "note": "Development and CI should use pinned, reproducible tool versions.",
+    "stages": [
+      {
+        "zone": "Development",
+        "items": [
+          [
+            "Devcontainers",
+            "Consistent workspaces",
+            "cube"
+          ],
+          [
+            "CLI toolchain",
+            "Terraform, kubectl, AWS",
+            "terminal"
+          ]
+        ]
+      },
+      {
+        "zone": "Automation",
+        "items": [
+          [
+            "Bash scripts",
+            "Repeatable operations",
+            "terminal"
+          ],
+          [
+            "GitLab CI",
+            "Job execution",
+            "pipeline"
+          ]
+        ]
+      },
+      {
+        "zone": "Assurance",
+        "items": [
+          [
+            "Unit tests",
+            "Expected behavior",
+            "shield"
+          ],
+          [
+            "Static checks",
+            "Lint and validation",
+            "clock"
+          ]
+        ]
+      },
+      {
+        "zone": "Artifacts",
+        "items": [
+          [
+            "Container images",
+            "OCI distribution",
+            "registry"
+          ],
+          [
+            "Documentation",
+            "Research and guides",
+            "database"
+          ]
+        ]
+      }
+    ]
+  },
+  "tooling/container-images": {
+    "title": "Container Image Supply Chain",
+    "subtitle": "Pinned inputs, reproducible build, assurance and OCI distribution",
+    "layout": "pipeline",
+    "note": "Use immutable digests and scope registry permissions to the publishing job.",
+    "stages": [
+      {
+        "zone": "Build inputs",
+        "items": [
+          [
+            "Base image",
+            "Pinned digest",
+            "cube"
+          ],
+          [
+            "Dependencies",
+            "Version-controlled",
+            "database"
+          ]
+        ]
+      },
+      {
+        "zone": "Build",
+        "items": [
+          [
+            "Buildah",
+            "Rootless OCI build",
+            "build"
+          ],
+          [
+            "Layer cache",
+            "Repeatable layers",
+            "cube"
+          ]
+        ]
+      },
+      {
+        "zone": "Verify",
+        "items": [
+          [
+            "Vulnerability scan",
+            "Known CVEs",
+            "shield"
+          ],
+          [
+            "SBOM",
+            "Dependency inventory",
+            "database"
+          ]
+        ]
+      },
+      {
+        "zone": "Publish",
+        "items": [
+          [
+            "Amazon ECR",
+            "Scoped push identity",
+            "registry"
+          ],
+          [
+            "Image digest",
+            "Immutable reference",
+            "cube"
+          ]
+        ]
+      }
+    ]
+  },
+  "tooling/devcontainers": {
+    "title": "Development Container Architecture",
+    "subtitle": "A reproducible local environment aligned with CI execution",
+    "layout": "layers",
+    "note": "Devcontainers are developer environments; they do not replace CI validation.",
+    "stages": [
+      {
+        "zone": "Source definition",
+        "items": [
+          [
+            "devcontainer.json",
+            "Runtime configuration",
+            "database"
+          ],
+          [
+            "Dockerfile",
+            "Pinned tool versions",
+            "cube"
+          ],
+          [
+            "Workspace mounts",
+            "Project source",
+            "git"
+          ]
+        ]
+      },
+      {
+        "zone": "Workspace runtime",
+        "items": [
+          [
+            "Container runtime",
+            "Podman or Docker",
+            "build"
+          ],
+          [
+            "Developer tools",
+            "Terraform, AWS CLI",
+            "terminal"
+          ],
+          [
+            "Identity",
+            "Scoped credentials",
+            "iam"
+          ]
+        ]
+      },
+      {
+        "zone": "Verification",
+        "items": [
+          [
+            "Local tests",
+            "Formatting and lint",
+            "shield"
+          ],
+          [
+            "CI parity",
+            "Same toolchain versions",
+            "pipeline"
+          ],
+          [
+            "Rebuild",
+            "Repeatable setup",
+            "clock"
+          ]
+        ]
+      }
+    ]
+  },
+  "engineering-reference/guides/aws/eks-upgrade-rollback": {
+    "title": "Amazon EKS Upgrade & Recovery",
+    "subtitle": "Control-plane version change, workload gates and recovery decisions",
+    "layout": "pipeline",
+    "note": "Rollback eligibility is conditional; node groups, add-ons and Terraform need separate reconciliation.",
+    "stages": [
+      {
+        "zone": "Preflight",
+        "items": [
+          [
+            "Version support",
+            "EKS compatibility",
+            "clock"
+          ],
+          [
+            "CRDs & webhooks",
+            "API compatibility",
+            "shield"
+          ]
+        ]
+      },
+      {
+        "zone": "Upgrade",
+        "items": [
+          [
+            "EKS control plane",
+            "AWS-managed update",
+            "cluster"
+          ],
+          [
+            "Compute fleet",
+            "Node groups / Karpenter",
+            "pod"
+          ]
+        ]
+      },
+      {
+        "zone": "Health gates",
+        "items": [
+          [
+            "Core add-ons",
+            "CNI, CSI, CoreDNS",
+            "cube"
+          ],
+          [
+            "Workload SLOs",
+            "Readiness and traffic",
+            "shield"
+          ]
+        ]
+      },
+      {
+        "zone": "Recovery",
+        "items": [
+          [
+            "Rollback eligible?",
+            "AWS API constraints",
+            "clock"
+          ],
+          [
+            "Terraform reconcile",
+            "State and version pins",
+            "build"
+          ]
+        ]
+      }
+    ]
+  },
+  "engineering-reference/guides/gitlab/kubernetes-runner-buildah-ecr": {
+    "title": "GitLab Runner → Buildah → Amazon ECR",
+    "subtitle": "Kubernetes build execution and AWS workload identity across trust boundaries",
+    "layout": "pipeline",
+    "note": "IRSA authorizes AWS access; Buildah creates OCI layers; ECR stores pushed image digests.",
+    "stages": [
+      {
+        "zone": "GitLab control plane",
+        "items": [
+          [
+            "Git repository",
+            "Pipeline YAML",
+            "git"
+          ],
+          [
+            "GitLab Runner",
+            "Kubernetes executor",
+            "runner"
+          ],
+          [
+            "Job request",
+            "Pod creation via API",
+            "pipeline"
+          ]
+        ]
+      },
+      {
+        "zone": "Amazon EKS build pod",
+        "items": [
+          [
+            "Buildah process",
+            "Build OCI image",
+            "build"
+          ],
+          [
+            "ServiceAccount",
+            "Projected OIDC token",
+            "iam"
+          ],
+          [
+            "OCI image digest",
+            "Layers and manifest",
+            "cube"
+          ]
+        ]
+      },
+      {
+        "zone": "AWS identity boundary",
+        "items": [
+          [
+            "AWS STS",
+            "AssumeRoleWithWebIdentity",
+            "iam"
+          ],
+          [
+            "IAM role policy",
+            "Scoped ECR actions",
+            "shield"
+          ],
+          [
+            "ECR login",
+            "Short-lived token",
+            "registry"
+          ]
+        ]
+      },
+      {
+        "zone": "Registry & consumers",
+        "items": [
+          [
+            "Amazon ECR",
+            "Push layers and manifest",
+            "ecr"
+          ],
+          [
+            "Image digest",
+            "Immutable artifact",
+            "database"
+          ],
+          [
+            "Deployment",
+            "Pull approved digest",
+            "cluster"
+          ]
+        ]
+      }
+    ]
+  },
+  "engineering-reference/guides/security/privileged-gitlab-runners": {
+    "title": "Privileged Runner Threat Boundaries",
+    "subtitle": "Dedicated node isolation and compensating controls for DinD workloads",
+    "layout": "hub",
+    "note": "Privileged DinD retains host-kernel compromise risk; policy and IAM cannot erase it.",
+    "stages": [
+      {
+        "zone": "High-risk boundary",
+        "items": [
+          [
+            "Privileged DinD pod",
+            "Shared host kernel",
+            "shield",
+            "Residual host escape risk"
+          ]
+        ]
+      },
+      {
+        "zone": "Admission",
+        "items": [
+          [
+            "Kyverno exception",
+            "Precisely scoped policy",
+            "policy"
+          ]
+        ]
+      },
+      {
+        "zone": "Scheduling",
+        "items": [
+          [
+            "Dedicated nodes",
+            "Taints and affinity",
+            "cluster"
+          ]
+        ]
+      },
+      {
+        "zone": "Network",
+        "items": [
+          [
+            "Calico / Cilium",
+            "Egress and lateral controls",
+            "cloud"
+          ]
+        ]
+      },
+      {
+        "zone": "Identity & recovery",
+        "items": [
+          [
+            "IRSA + node recycle",
+            "Scoped IAM and teardown",
+            "iam"
+          ]
+        ]
+      }
+    ]
+  },
+  "engineering-reference/guides/security/kubernetes-workload-eol-inventory": {
+    "title": "Kubernetes Software Lifecycle Inventory",
+    "subtitle": "Collect component versions, evaluate support and prioritize remediation",
+    "layout": "pipeline",
+    "note": "Unmapped versions are UNKNOWN, not automatically supported or end-of-life.",
+    "stages": [
+      {
+        "zone": "Collect",
+        "items": [
+          [
+            "Flux & Helm",
+            "Release declarations",
+            "flux"
+          ],
+          [
+            "Terraform",
+            "EKS managed add-ons",
+            "build"
+          ],
+          [
+            "OCI images",
+            "Resolved digests",
+            "cube"
+          ]
+        ]
+      },
+      {
+        "zone": "Normalize",
+        "items": [
+          [
+            "Component IDs",
+            "Vendor and project",
+            "database"
+          ],
+          [
+            "Version mapping",
+            "Installed vs declared",
+            "clock"
+          ],
+          [
+            "Provenance",
+            "Evidence confidence",
+            "shield"
+          ]
+        ]
+      },
+      {
+        "zone": "Evaluate",
+        "items": [
+          [
+            "Official policies",
+            "Upstream releases",
+            "database"
+          ],
+          [
+            "endoflife.date",
+            "Mapped support windows",
+            "clock"
+          ],
+          [
+            "AWS compatibility",
+            "EKS add-on versions",
+            "cloud"
+          ]
+        ]
+      },
+      {
+        "zone": "Report",
+        "items": [
+          [
+            "Supported / EOL",
+            "Known evidence",
+            "shield"
+          ],
+          [
+            "Unknown",
+            "Unmapped versions",
+            "clock"
+          ],
+          [
+            "Remediation",
+            "Owner and upgrade path",
+            "terminal"
+          ]
+        ]
+      }
+    ]
+  }
+}
