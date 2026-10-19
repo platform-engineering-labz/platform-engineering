@@ -1,0 +1,12 @@
+flowchart LR
+  ROOT["Image delivery"]
+  N0["GitLab CI"]
+  ROOT --> N0
+  N1["Kubernetes runner"]
+  N0 --> N1
+  N2["Buildah"]
+  N1 --> N2
+  N3["ECR"]
+  N2 --> N3
+  N4["Deployment"]
+  N3 --> N4
