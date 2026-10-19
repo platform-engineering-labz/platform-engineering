@@ -1,0 +1,12 @@
+flowchart LR
+  ROOT["Container image lifecycle"]
+  N0["Base image"]
+  ROOT --> N0
+  N1["Dependencies"]
+  N0 --> N1
+  N2["Build"]
+  N1 --> N2
+  N3["Scan"]
+  N2 --> N3
+  N4["Registry"]
+  N3 --> N4
