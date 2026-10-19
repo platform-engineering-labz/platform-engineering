@@ -3,7 +3,7 @@ site_description: A progressively structured, searchable platform engineering te
 site_url: https://platform-engineering-labz.github.io/platform-engineering/
 repo_url: https://github.com/platform-engineering-labz/platform-engineering
 repo_name: platform-engineering-labz/platform-engineering
-docs_dir: .
+docs_dir: .site-src
 site_dir: /tmp/platform-engineering-handbook-site
 theme:
   name: material
