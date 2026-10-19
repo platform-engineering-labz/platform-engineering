@@ -34,4 +34,11 @@ A repository review should search **the entire repository**, not only these fold
 
 ## Published topic guides
 
-None yet. Directories and scenario roadmaps are placeholders until their content is implemented and reviewed. Add links to **actual** guides/labs here as they are published.
+| Topic | Guide |
+| --- | --- |
+| Privileged GitLab Runner / DinD isolation | [Security review](guides/security/privileged-gitlab-runners/README.md) |
+| GitLab Kubernetes executor / Buildah / ECR | [Build and authentication review](guides/gitlab/kubernetes-runner-buildah-ecr/README.md) |
+| Helm and Kubernetes dependency EOL tracking | [Lifecycle inventory review](guides/security/kubernetes-workload-eol-inventory/README.md) |
+| EKS rollback and Terraform | [Upgrade recovery review](guides/aws/eks-upgrade-rollback/README.md) |
+
+These guides summarize confirmed discussion topics, not an exhaustive audit of pinned conversations. The ChatGPT pinned-list view was not available for enumeration, and the supplied Claude share page could not be retrieved. The excluded topics **Sync Claude Skills** and **Buildah Compose Equivalent** are not included. Further guides require source discussion access and review.
