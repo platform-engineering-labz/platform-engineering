@@ -4,6 +4,8 @@
 
 ![EKS upgrade and recovery](diagram.png)
 
+[Open the overview PNG](diagram.png)
+
 ## Problem
 An EKS version upgrade may introduce incompatibilities; AWS rollback availability does not imply Terraform provider support.
 
