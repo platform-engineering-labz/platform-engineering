@@ -1,0 +1,10 @@
+flowchart LR
+  ROOT["Engineering tooling"]
+  N0["Build images"]
+  ROOT --> N0
+  N1["Devcontainers"]
+  N0 --> N1
+  N2["Validation scripts"]
+  N1 --> N2
+  N3["CI checks"]
+  N2 --> N3
