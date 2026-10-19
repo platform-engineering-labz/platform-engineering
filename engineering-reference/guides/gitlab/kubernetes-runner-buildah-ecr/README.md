@@ -4,7 +4,9 @@
 
 ![GitLab Buildah to ECR workflow](diagram.png)
 
-[Open the overview PNG](diagram.png)
+[Open the solution PNG](diagram.png) · [Open scalable SVG](diagram.svg)
+
+**Diagram focus:** recommended rootless Buildah workflow, separate pull/push authentication, IRSA trust path, and proof of least privilege.
 
 ## Problem
 CI image builds require ECR authentication without static AWS credentials or unnecessary privileged DinD.

@@ -4,7 +4,9 @@
 
 ![Privileged GitLab runner isolation](diagram.png)
 
-[Open the overview PNG](diagram.png)
+[Open the solution PNG](diagram.png) · [Open scalable SVG](diagram.svg)
+
+**Diagram focus:** rootless first; exceptional privileged DinD on isolated disposable nodes, compensating controls, and explicit residual risk.
 
 ## Problem
 Privileged Docker-in-Docker jobs can compromise node isolation; Kubernetes namespaces alone do not remove host-level risk.

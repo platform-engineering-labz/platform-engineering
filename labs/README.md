@@ -2,7 +2,9 @@
 
 ![Integrated platform lab workflow](diagram.png)
 
-[Open the overview PNG](diagram.png)
+[Open the solution PNG](diagram.png) · [Open scalable SVG](diagram.svg)
+
+**Diagram focus:** proposed lab acceptance workflow, not a deployed reference architecture.
 
 
 This area is for **runnable, multi-component demonstrations**, not stand-alone notes. Each lab should contain its own README, prerequisites, architecture, reproducible manifests/code, a test/validation path, teardown instructions, and security considerations. Use synthetic identifiers; never reuse work systems or configurations.

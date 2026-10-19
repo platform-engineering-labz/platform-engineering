@@ -4,7 +4,9 @@
 
 ![EKS upgrade and recovery](diagram.png)
 
-[Open the overview PNG](diagram.png)
+[Open the solution PNG](diagram.png) · [Open scalable SVG](diagram.svg)
+
+**Diagram focus:** test rollback eligibility and Terraform provider support separately; restore dependent workloads and reconcile drift.
 
 ## Problem
 An EKS version upgrade may introduce incompatibilities; AWS rollback availability does not imply Terraform provider support.

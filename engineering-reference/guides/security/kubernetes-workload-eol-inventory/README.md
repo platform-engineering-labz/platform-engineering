@@ -4,7 +4,9 @@
 
 ![Flux, Helm and EKS lifecycle scanning](diagram.png)
 
-[Open the overview PNG](diagram.png)
+[Open the solution PNG](diagram.png) · [Open scalable SVG](diagram.svg)
+
+**Diagram focus:** resolve actual app/image/add-on versions, evaluate authoritative lifecycle evidence, and fail CI only for confirmed unsupported dependencies.
 
 ## Problem
 A Flux repository may deploy unsupported applications and add-ons even when Helm charts are pinned.
