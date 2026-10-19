@@ -1,12 +1,12 @@
 flowchart LR
-  ROOT["Platform foundations"]
-  N0["Linux isolation"]
-  ROOT --> N0
-  N1["OCI images"]
+  N0["Linux kernel isolation"]
+  N1["OCI image and runtime"]
   N0 --> N1
-  N2["Kubernetes"]
+  N2["Kubernetes pod and service"]
   N1 --> N2
-  N3["Networking"]
+  N3["RBAC admission and networking"]
   N2 --> N3
-  N4["Declarative state"]
-  N3 --> N4
+  classDef core fill:#E8F1FF,stroke:#2563EB,stroke-width:2px,color:#0F172A
+  classDef stage fill:#ECFDF5,stroke:#059669,stroke-width:2px,color:#064E3B
+  class N0,N1 core
+  class N2,N3 stage

@@ -1,14 +1,12 @@
 flowchart LR
-  ROOT["Platform engineering encyclopedia"]
-  N0["Infrastructure"]
-  ROOT --> N0
-  N1["CI/CD"]
+  N0["Knowledge discovery"]
+  N1["Architecture chapters"]
   N0 --> N1
-  N2["GitOps"]
+  N2["Labs & reusable modules"]
   N1 --> N2
-  N3["Security"]
+  N3["Validation & primary sources"]
   N2 --> N3
-  N4["Operations"]
-  N3 --> N4
-  N5["Practical labs"]
-  N4 --> N5
+  classDef core fill:#E8F1FF,stroke:#2563EB,stroke-width:2px,color:#0F172A
+  classDef stage fill:#ECFDF5,stroke:#059669,stroke-width:2px,color:#064E3B
+  class N0,N1 core
+  class N2,N3 stage

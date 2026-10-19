@@ -1,16 +1,12 @@
 flowchart LR
-  ROOT["Technical handbook"]
   N0["Foundations"]
-  ROOT --> N0
-  N1["Infrastructure"]
+  N1["Infrastructure & EKS"]
   N0 --> N1
-  N2["CI/CD"]
+  N2["CI/CD & GitOps"]
   N1 --> N2
-  N3["GitOps"]
+  N3["Security & operations"]
   N2 --> N3
-  N4["Security"]
-  N3 --> N4
-  N5["Operations"]
-  N4 --> N5
-  N6["Practice"]
-  N5 --> N6
+  classDef core fill:#E8F1FF,stroke:#2563EB,stroke-width:2px,color:#0F172A
+  classDef stage fill:#ECFDF5,stroke:#059669,stroke-width:2px,color:#064E3B
+  class N0,N1 core
+  class N2,N3 stage

@@ -1,12 +1,12 @@
 flowchart LR
-  ROOT["AWS infrastructure"]
-  N0["Terraform"]
-  ROOT --> N0
-  N1["EKS"]
+  N0["Terraform plan"]
+  N1["AWS VPC and IAM"]
   N0 --> N1
-  N2["Managed add-ons"]
+  N2["EKS control plane and node pools"]
   N1 --> N2
-  N3["Node lifecycle"]
+  N3["Add-ons and lifecycle management"]
   N2 --> N3
-  N4["Recovery"]
-  N3 --> N4
+  classDef core fill:#E8F1FF,stroke:#2563EB,stroke-width:2px,color:#0F172A
+  classDef stage fill:#ECFDF5,stroke:#059669,stroke-width:2px,color:#064E3B
+  class N0,N1 core
+  class N2,N3 stage
