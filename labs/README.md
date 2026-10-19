@@ -1,5 +1,10 @@
 # Integrated platform labs
 
+![Integrated platform lab workflow](diagram.png)
+
+[Open the overview PNG](diagram.png)
+
+
 This area is for **runnable, multi-component demonstrations**, not stand-alone notes. Each lab should contain its own README, prerequisites, architecture, reproducible manifests/code, a test/validation path, teardown instructions, and security considerations. Use synthetic identifiers; never reuse work systems or configurations.
 
 ## Candidate labs (not implemented yet)
