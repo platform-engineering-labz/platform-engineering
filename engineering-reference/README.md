@@ -1,31 +1,9 @@
 # Engineering Reference
 
-A collection of self-contained, educational guides, reproducible examples, troubleshooting workflows, architecture explanations, and authoritative technical references for cloud and platform engineering.
+This is the **technical knowledge** part of the [Platform Engineering monorepo](../README.md). It contains focused guides, reference examples, troubleshooting, architecture and curated documentation. Runnable integrated projects live in [labs](../labs/), shared implementations in [modules](../modules/), and development assets in [tooling](../tooling/).
 
-All examples should use public information and fictional resources. Do not commit secrets, private infrastructure details, or employer-proprietary content.
+Start with the [topic index](INDEX.md). Guides are organized by technologies and shared concerns (AWS, Kubernetes, Terraform, GitLab, GitOps, security, networking, storage, containers, Linux and observability); cross-cutting topics link to multiple labs or guides.
 
-See the [topic index](INDEX.md) for navigation and future additions.
+Follow [content standards](references/content-standards.md) to preserve the question, concise answer, synthetic examples, verified results, tradeoffs, primary sources and related work. Existing directories may be empty: an index entry does not mean a guide exists.
 
-## Directory structure
-
-| Directory | Purpose |
-| --- | --- |
-| `guides/aws/` | AWS services and operational walkthroughs |
-| `guides/kubernetes/` | Kubernetes concepts, administration, and operations |
-| `guides/terraform/` | Terraform workflows and infrastructure as code |
-| `guides/gitlab/` | GitLab CI/CD and runner configurations |
-| `examples/eks/` | Example Amazon EKS configurations |
-| `examples/gitlab-runners/` | GitLab Runner deployment and job examples |
-| `examples/terraform-modules/` | Reusable Terraform modules |
-| `examples/kubernetes-policies/` | Kubernetes security and governance policies |
-| `troubleshooting/` | Diagnostic guides and resolutions |
-| `architecture/` | Design decisions, diagrams, and system models |
-| `references/` | Links to vendor documentation and specifications |
-
-## Contributing content
-
-Keep each guide focused on one topic, include working examples when possible, explain design decisions, and cite official documentation. Never publish credentials or private organizational information.
-
-## ChatGPT workflow recovery
-
-For read-only repository review and authorized updates, [copy the recovery prompt from the root README](../README.md). Root [AGENTS.md](../AGENTS.md) explains when to invoke the relevant skills.
+Never publish employer code, internal architecture, secrets, or identifying infrastructure details. See repository-wide [AGENTS.md](../AGENTS.md) and the root [ChatGPT recovery prompt](../README.md).

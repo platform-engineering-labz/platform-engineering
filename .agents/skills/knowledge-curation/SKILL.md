@@ -1,14 +1,14 @@
 ---
 name: knowledge-curation
-description: Use when the user explicitly requests saving a technical explanation or example, updating existing committed knowledge, adding content to the repository, or creating a GitHub pull request. Favor consolidating related topics over duplicating guides.
+description: Use when the user explicitly asks to save, update, or publish runnable platform engineering code, modules, tools, guides, labs, or research in the GitHub monorepo. Reuse existing content and maintain cross-topic navigation.
 ---
 
-# Curate and publish technical learning
+# Maintain and publish monorepo content
 
-1. Read root `AGENTS.md` and `engineering-reference/INDEX.md` on `main`. Find and read relevant committed files before deciding what to change.
-2. Choose **revise** for improved explanations, **append** for genuinely additive information in the same topic, or **new topic** when materially distinct. Avoid transcript dumps, repeated questions, and duplicate files.
-3. Organize under `engineering-reference/`: `guides/{aws,kubernetes,terraform,gitlab}/` for concepts; `examples/` for reproducible labs; `troubleshooting/` for diagnostics; `architecture/` for designs; `references/` for curated sources. Make new subdirectories if warranted.
-4. Each contribution should preserve the core question, concise answer, explanation, realistic *synthetic* example where applicable, validation approach, limitations/tradeoffs, date-sensitive caveats, and primary-source references. Link related guides/examples instead of copying them.
-5. Update `engineering-reference/INDEX.md` for newly added or materially changed topics. Check links and formatting; run tests or static checks where possible.
-6. For explicitly requested publication, create a descriptive feature branch from `main`, commit only approved-scope changes, verify the files and commit via GitHub, then open a PR targeting `main`. Return the PR link, commit SHA, and brief summary. Do not merge.
-7. Never put proprietary employer code, details, identifiers, screenshots, secrets, or chat-personal data in the public repository. State when verification could not be performed.
+1. Read root `AGENTS.md`, the [content standards](../../../engineering-reference/references/content-standards.md), and existing relevant files **throughout the repository**. `engineering-reference/INDEX.md` is a map, not proof of existing material.
+2. Decide: **reuse/refactor existing code**, **revise or append a canonical document**, or **create a truly new project/topic**. Avoid transcript dumps, duplicates and unneeded directories.
+3. Put runnable integrated scenarios under `labs/`, shared infrastructure modules under `modules/`, development helpers and images under `tooling/`, and educational guides/examples/architecture/troubleshooting under `engineering-reference/`. Link documentation to implementations rather than cloning the same code.
+4. For significant content, include objective/question, implementation, setup, validation, tradeoffs/security, official sources and related topics. Use multi-topic tags when useful; identify untested examples honestly. Never publish employer-proprietary or personal material.
+5. Update appropriate READMEs, links, `engineering-reference/INDEX.md`, and tests/validation as warranted. Avoid claims that roadmap entries are functional implementations.
+6. On explicit publication request, create a descriptive branch from `main`, commit the changes, verify SHA and file diff through GitHub, and open a PR to `main`. Return the direct PR URL and SHA. Never merge automatically or force-push.
+7. Preserve unrelated files; report verification failures or unavailable access clearly. No need for the user to run Git commands or use Codespaces.

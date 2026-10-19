@@ -1,13 +1,13 @@
 ---
 name: repository-knowledge-review
-description: Use when the user explicitly asks to search, review, or compare the platform engineering knowledge repository against a technical question or previous committed material. Read-only; classify existing, related, or new topics without making commits.
+description: Read-only search of existing committed platform-engineering projects, labs, reusable code, guides, and discussions recorded as documentation when the user explicitly asks to review the repository.
 ---
 
-# Review existing knowledge (read-only)
+# Review existing repository work (read-only)
 
-1. Read the root `AGENTS.md` and `engineering-reference/INDEX.md` on `main`.
-2. Search `engineering-reference/` for relevant filenames, keywords, concepts, examples, and references. Inspect actual matching files; the index is a map, not proof.
-3. Classify the question as **covered**, **related (enhance existing)**, or **new**. Mention exact relevant file paths and any gaps.
-4. Answer the technical question using confirmed material and authoritative current sources when appropriate. Explain whether future content should be revised, appended, or added.
-5. Stay read-only. Do not create branches, commits, files, or pull requests unless the user separately asks to publish.
-6. Do not claim a historical conversation occurred unless its contents are available in the current session or were committed in the repository.
+1. Read root `AGENTS.md` and the [reference index](../../../engineering-reference/INDEX.md).
+2. Search **the full repository**: lab and module READMEs, Terraform files, Helm/Kubernetes configuration, CI/CD definitions, scripts, architecture and guides. Use related technologies, concepts, problems, and filenames rather than only one exact keyword.
+3. Inspect matching files directly; distinguish **covered**, **related—enhance/refactor/append**, and **new**. Note exact paths, gaps, and any stale or conflicting implementations. Roadmap items and directory placeholders are not evidence that content exists.
+4. Answer the user's technical question and recommend where to update or create material. Use authoritative current sources as appropriate and prefer cross-links to duplicated content.
+5. Stay **read-only**. Do not create branches, modify files, commit or open PRs unless the user separately asks for changes.
+6. Do not claim an earlier conversation occurred unless it is available in the current session or explicitly committed.

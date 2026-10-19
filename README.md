@@ -1,17 +1,31 @@
 # Platform Engineering
 
-Public, independent technical learning and a reusable professional knowledge base.
+A public monorepo for independently developed cloud and platform engineering **labs, reusable code, tools, architectures and technical knowledge**. Work is organized by executable scenario or reusable component, with cross-linked explanations.
 
-Start with the [Engineering Reference index](engineering-reference/INDEX.md). The repository's [AGENTS.md](AGENTS.md) defines the persistent workflow and its [skills](.agents/skills/) handle repository review and knowledge curation.
+## Repository map
 
-## Restore the workflow in a new ChatGPT conversation
+| Location | Purpose |
+| --- | --- |
+| [Engineering reference](engineering-reference/INDEX.md) | Guides, troubleshooting, small examples, architecture and primary sources |
+| [Labs](labs/) | Runnable, multi-technology implementations and experiments |
+| [Modules](modules/) | Reusable building blocks (starting with Terraform) |
+| [Tooling](tooling/) | Container images, scripts, development containers and validation |
+| [AGENTS.md](AGENTS.md) and [.agents/skills/](.agents/skills/) | Persistent instructions for AI assistants |
 
-Connect the GitHub integration and paste this prompt (or save it as ChatGPT Project instructions):
+Start with the [content standards](engineering-reference/references/content-standards.md) when publishing new topics. Proposed lab subjects are listed in [labs/README.md](labs/README.md); **they are not implemented yet**.
+
+## Restore the ChatGPT workflow
+
+In your **existing Platform Engineering ChatGPT Project**, put these instructions in Project settings, or paste them into a new chat:
 
 ```text
-My professional technical knowledge source of truth is platform-engineering-labz/platform-engineering (main). When I ask you to review the repository, read AGENTS.md and the applicable .agents/skills/ instructions. Search relevant committed examples, then tell me whether this question is already covered, related to an existing topic that should be enhanced, or new. Answer the question; don't edit the repository just because I asked for a review.
+Use platform-engineering-labz/platform-engineering as the source of truth for my committed platform-engineering code, labs, architecture, and technical knowledge.
 
-Only when I explicitly say "Add this to my repository" or request saving/updating content: improve an existing topic or create a new one under engineering-reference/, maintain the index, create a descriptive branch from main, commit and verify changes, and open a PR targeting main. Provide its URL and commit SHA. Never merge, force-push, or change protections. Use public or synthetic examples only; no employer code, private details, or secrets. Do not require manual Git commands or Codespaces.
+Answer normal questions without accessing GitHub. When I request repository review, read AGENTS.md and relevant .agents/skills/, search the entire repository, and tell me what already exists, what can be enhanced, and what is new. Do not edit anything for a read-only review.
+
+When I say "Add this to my repository" or explicitly request changes, inspect existing work first, then update/refactor related files or create a properly organized project or guide. Use labs/ for integrated runnable scenarios, modules/ for reusable code, tooling/ for development assets, and engineering-reference/ for explanations. Keep indexes and cross-links current.
+
+For writes, branch from main, commit and verify, then open a PR targeting main. Return the PR link and SHA. Never merge, force-push, delete repositories, or alter branch protection without explicit authorization. No manual Git or Codespaces steps. Publish only generic, independently generated material, never employer code, private infrastructure or secrets.
 ```
 
-Previous technical discussions are only in this knowledge base when explicitly committed. [Archived GitHub integration walkthrough](engineering-reference/references/github-integration-workflow.md).
+Only content actually committed to GitHub persists across sessions. [GitHub integration walkthrough](engineering-reference/references/github-integration-workflow.md).

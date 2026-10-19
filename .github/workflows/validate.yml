@@ -1,0 +1,39 @@
+name: Validate platform engineering monorepo
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate repository Markdown links
+        run: python3 tooling/scripts/validate_repository.py
+
+      - name: Set up Terraform (when .tf files exist)
+        if: hashFiles('**/*.tf') != ''
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Check Terraform formatting
+        if: hashFiles('**/*.tf') != ''
+        run: terraform fmt -check -recursive
+
+      - name: ShellCheck (when shell scripts exist)
+        shell: bash
+        run: |
+          mapfile -d '' -t scripts < <(find labs modules tooling -type f -name '*.sh' -print0)
+          if (( ${#scripts[@]} > 0 )); then
+            sudo apt-get update
+            sudo apt-get install -y shellcheck
+            shellcheck "${scripts[@]}"
+          else
+            echo "No shell scripts to lint."
+          fi
