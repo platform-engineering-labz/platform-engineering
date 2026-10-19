@@ -1,0 +1,12 @@
+flowchart LR
+  ROOT["AWS infrastructure"]
+  N0["Terraform"]
+  ROOT --> N0
+  N1["EKS"]
+  N0 --> N1
+  N2["Managed add-ons"]
+  N1 --> N2
+  N3["Node lifecycle"]
+  N2 --> N3
+  N4["Recovery"]
+  N3 --> N4
