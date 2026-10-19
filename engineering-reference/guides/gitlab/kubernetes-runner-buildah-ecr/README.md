@@ -4,6 +4,8 @@
 
 ![GitLab Buildah to ECR workflow](diagram.png)
 
+[Open the overview PNG](diagram.png)
+
 ## Problem
 CI image builds require ECR authentication without static AWS credentials or unnecessary privileged DinD.
 
