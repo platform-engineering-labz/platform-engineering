@@ -2,6 +2,8 @@
 
 ![Buildah and ECR image build](diagram.png)
 
+[Open the overview PNG](diagram.png)
+
 A CI job is a workload with compute privileges, cloud identity and network access. Container builds must distinguish **how an image is built**, **how the job authenticates to push it**, and **how Kubernetes authenticates to pull it**.
 
 ## Published chapter
