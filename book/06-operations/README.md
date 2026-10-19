@@ -2,6 +2,8 @@
 
 ![Flux and EKS lifecycle inventory](diagram.png)
 
+[Open the overview PNG](diagram.png)
+
 An EKS platform has multiple release clocks: Kubernetes, add-ons, controllers, Helm charts, deployed applications, images and node operating systems. Operational safety requires knowing both what Git declares and what the cluster actually runs.
 
 ## Published chapter
