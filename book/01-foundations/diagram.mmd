@@ -1,0 +1,12 @@
+flowchart LR
+  ROOT["Platform foundations"]
+  N0["Linux isolation"]
+  ROOT --> N0
+  N1["OCI images"]
+  N0 --> N1
+  N2["Kubernetes"]
+  N1 --> N2
+  N3["Networking"]
+  N2 --> N3
+  N4["Declarative state"]
+  N3 --> N4
