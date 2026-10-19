@@ -18,3 +18,9 @@ Place detailed code examples in reusable implementation folders rather than infl
 ## Optional website
 
 Markdown must remain readable in GitHub and compatible with MkDocs. A future MkDocs Material site can provide full-text search, navigation and glossary browsing; deploy via GitHub Pages or GitLab Pages only after the publishing workflow is explicitly selected. Do not assume a site is live.
+
+## Ebook illustration policy
+
+Use a **topic-specific PNG** where a visual clarifies architecture, data flow, trust boundaries, state transitions or operational decision-making. Place `diagram.png` next to the chapter or topic README that embeds it, with descriptive alt text. Link to a deeper technical guide rather than treating the picture as the implementation. Prefer one meaningful diagram to decorative screenshots or duplicated generic illustrations. Do not add images to empty placeholders or directories that have no substantive content.
+
+Review every diagram against the associated analysis: distinguish desired from actual state, permissions from isolation, and compatibility from EOL. Keep labels legible at ebook width, preserve the explanatory text for search/accessibility, and verify that every image link resolves. If a visual repeats an existing guide diagram in a chapter introduction, keep the copies synchronized when the underlying explanation changes.
