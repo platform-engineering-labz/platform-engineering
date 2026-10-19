@@ -82,7 +82,44 @@ def render(path,spec):
       txt(103,83,name,46,"#FFFFFF",760),txt(105,130,subtitle,23,"#C9D9E8",450),
       txt(1730,79,"ARCHITECTURE  /  REFERENCE",17,"#B4CBDC",700,"end"),
       txt(1730,117,"PLATFORM ENGINEERING ENCYCLOPEDIA",16,"#B4CBDC",500,"end")]
-    if layout=="pipeline":
+    if layout=="solution":
+        # Decision-oriented plate: explicit problem, recommended controls,
+        # concrete outcome and acceptance evidence from the topic README.
+        out.append(rect(70,213,1660,112,"#FFF0F1","#E8B9C0",17,2))
+        out.append(txt(99,250,"ENGINEERING PROBLEM",18,"#A62D4B",760))
+        out.append(txt(99,289,spec["problem"],22,INK,550))
+        steps=spec["steps"]
+        gap=21
+        cw=(1660-gap*3)/4
+        for i,(label,description,kind) in enumerate(steps):
+            x=70+i*(cw+gap)
+            color,pale=PAL[i%len(PAL)]
+            out.append(rect(x,355,cw,258,"#FFFFFF","#D6E1ED",18,2))
+            out.append(rect(x+1,356,cw-2,67,pale,pale,16,0))
+            out.append(icon(x+44,389,kind,color))
+            out.append(txt(x+85,397,label,21,color,760))
+            # Multi-line explanatory text, not a generic architecture label.
+            words=description.split(); lines=[]; current=""
+            for word in words:
+                trial=(current+" "+word).strip()
+                if len(trial)>32 and current:
+                    lines.append(current);current=word
+                else:current=trial
+            if current:lines.append(current)
+            for j,segment in enumerate(lines[:5]):
+                out.append(txt(x+24,471+j*29,segment,20,INK,520))
+            if i<3:out.append(line(x+cw+2,488,x+cw+gap-5,488))
+        out.append(rect(70,643,1660,147,"#F7FAFE","#D7E3EF",18,2))
+        out.append(txt(96,680,"NON-NEGOTIABLE CONTROLS / CAVEATS",19,"#315A83",760))
+        for j,guard in enumerate(spec["guards"][:3]):
+            out.append(f'<circle cx="105" cy="{714+j*25}" r="5" fill="#2563EB"/>')
+            out.append(txt(122,721+j*25,guard,18,INK,490))
+        out.append(rect(70,814,1660,96,"#E4F7ED","#A6D9BE",17,2))
+        out.append(txt(99,852,"RECOMMENDED OUTCOME",18,"#08724C",780))
+        out.append(txt(99,886,spec["outcome"],19,"#075C3F",600))
+        # Validation text goes in the bottom evidence band below the diagram.
+        out.append(txt(98,1009,spec["validation"],19,INK,520))
+    elif layout=="pipeline":
         n=len(stages);gap=25;cw=(1660-gap*(n-1))/n
         for i,s in enumerate(stages):
             x=70+i*(cw+gap);out.append(zone(x,240,cw,610,s["zone"],i+1,i))
