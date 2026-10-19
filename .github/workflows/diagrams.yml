@@ -25,8 +25,6 @@ jobs:
           node-version: '22'
       - name: Install Mermaid CLI
         run: npm install --no-save @mermaid-js/mermaid-cli@11.12.0
-      - name: Install headless Chrome for Mermaid rendering
-        run: npx puppeteer browsers install chrome
       - name: Render diagrams to local PNG files
         shell: bash
         run: |
@@ -35,6 +33,7 @@ jobs:
             output="${source%.mmd}.png"
             ./node_modules/.bin/mmdc -i "$source" -o "$output" \
               -c tooling/diagrams/mermaid-config.json \
+              -p tooling/diagrams/puppeteer-config.json \
               -b white -w 1600 -H 900 -s 2
           done < <(find . -name diagram.mmd -not -path './node_modules/*' -print0)
       - name: Commit generated PNGs to the same feature branch
