@@ -1,12 +1,24 @@
 flowchart LR
-  ROOT["Image delivery"]
-  N0["GitLab CI"]
-  ROOT --> N0
-  N1["Kubernetes runner"]
-  N0 --> N1
-  N2["Buildah"]
-  N1 --> N2
-  N3["ECR"]
-  N2 --> N3
-  N4["Deployment"]
-  N3 --> N4
+ subgraph S1["01 · Source & pipeline"]
+  direction TB
+  A["GitLab repository"] --> B["Pipeline / runner"]
+ end
+ subgraph S2["02 · Build environment"]
+  direction TB
+  C["Kubernetes executor"] --> D["Buildah job pod"]
+ end
+ subgraph S3["03 · Publish & deploy"]
+  direction TB
+  E["Amazon ECR"] --> F["GitOps release"]
+ end
+ B -->|"triggers"| C
+ D -->|"delivers"| E
+ classDef blue fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#172554
+ classDef teal fill:#E7F7F1,stroke:#059669,stroke-width:2px,color:#064E3B
+ classDef amber fill:#FFF3E5,stroke:#D97706,stroke-width:2px,color:#78350F
+ class A,B blue
+ class C,D teal
+ class E,F amber
+ style S1 fill:#F8FAFC,stroke:#CBD5E1
+ style S2 fill:#F0FBF6,stroke:#A3D9C0
+ style S3 fill:#FFFAF2,stroke:#F0D4A2
