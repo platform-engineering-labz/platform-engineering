@@ -25,6 +25,8 @@ jobs:
           node-version: '22'
       - name: Install Mermaid CLI
         run: npm install --no-save @mermaid-js/mermaid-cli@11.12.0
+      - name: Install headless Chrome for Mermaid rendering
+        run: npx puppeteer browsers install chrome
       - name: Render diagrams to local PNG files
         shell: bash
         run: |
