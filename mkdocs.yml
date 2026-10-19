@@ -5,15 +5,6 @@ repo_url: https://github.com/platform-engineering-labz/platform-engineering
 repo_name: platform-engineering-labz/platform-engineering
 docs_dir: .
 site_dir: /tmp/platform-engineering-handbook-site
-exclude_docs: |
-  .agents/
-  .github/
-  .gitignore
-  AGENTS.md
-  labs/
-  modules/
-  tooling/
-  chatgpt-commit-test.txt
 theme:
   name: material
   features:
