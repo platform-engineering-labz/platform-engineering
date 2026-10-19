@@ -1,0 +1,52 @@
+flowchart LR
+ subgraph INVENTORY["01 · DECLARED & OBSERVED SOURCES"]
+  direction TB
+  FLUX["Flux HelmRelease / OCIRepository"]
+  TF["Terraform EKS add-ons"]
+  OCI["Container image digests"]
+  LIVE["Optional cluster inventory"]
+ end
+ subgraph RESOLVE["02 · NORMALIZATION"]
+  direction TB
+  ID["Canonical component identity"]
+  VERSION["Resolved upstream version"]
+  EVIDENCE["Version provenance + confidence"]
+  ID --> VERSION --> EVIDENCE
+ end
+ subgraph SUPPORT["03 · SUPPORT POLICY"]
+  direction TB
+  UPSTREAM["Official vendor / project releases"]
+  EOL["endoflife.date coverage"]
+  AWS["AWS EKS compatibility matrix"]
+  STATUS{"Evidence sufficient?"}
+  UPSTREAM --> STATUS
+  EOL --> STATUS
+  AWS --> STATUS
+ end
+ subgraph OUTPUT["04 · ACTIONABLE RESULTS"]
+  direction TB
+  KNOWN["Supported / nearing EOL / unsupported"]
+  UNKNOWN["Unknown / unpinned / unmapped"]
+  REPORT["Evidence report + remediation owner"]
+  KNOWN --> REPORT
+  UNKNOWN --> REPORT
+ end
+ FLUX --> ID
+ TF --> ID
+ OCI --> VERSION
+ LIVE --> EVIDENCE
+ EVIDENCE --> UPSTREAM
+ EVIDENCE --> EOL
+ EVIDENCE --> AWS
+ STATUS -->|Yes| KNOWN
+ STATUS -->|No| UNKNOWN
+ classDef input fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#172554
+ classDef analysis fill:#E7F7F1,stroke:#059669,stroke-width:2px,color:#064E3B
+ classDef warning fill:#FFF3E5,stroke:#D97706,stroke-width:2px,color:#78350F
+ class FLUX,TF,OCI,LIVE input
+ class ID,VERSION,EVIDENCE,UPSTREAM,EOL,AWS,KNOWN,REPORT analysis
+ class STATUS,UNKNOWN warning
+ style INVENTORY fill:#F5F9FF,stroke:#B7CEF3
+ style RESOLVE fill:#F2FAF8,stroke:#A6D9CA
+ style SUPPORT fill:#F8FAFC,stroke:#CBD5E1
+ style OUTPUT fill:#FFFAF2,stroke:#F0D4A2

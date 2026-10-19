@@ -2,7 +2,7 @@
 
 ![Platform engineering knowledge map](diagram.png)
 
-[Open the overview PNG](diagram.png)
+[Open the overview PNG](diagram.png) · [View editable diagram source](diagram.mmd)
 
 
 A concise, linked glossary of platform-engineering concepts, research and reusable implementations. **Start with a term, open its topic overview, then follow links to deeper analysis, primary sources or working code.** Only published material is linked as a completed guide.
