@@ -1,0 +1,18 @@
+flowchart TB
+  subgraph CONTROL["Policy and identity plane"]
+    A["GitLab runner scheduling"] --> B["Kyverno admission"]
+    B --> C["Dedicated tainted node pool"]
+  end
+  subgraph NODE["Disposable build node — elevated risk"]
+    C --> D["Privileged DinD job"]
+    D --> E["Host kernel boundary"]
+  end
+  subgraph GUARDS["Compensating controls"]
+    F["Calico / Cilium egress policy"] --> D
+    G["Scoped IRSA"] --> D
+    H["Karpenter node replacement"] --> C
+  end
+  D --> I["Approved registry / proxy"]
+  D -. "Residual host compromise risk" .-> J["Threat model / incident response"]
+  classDef risk fill:#fff1f2,stroke:#be123c,color:#881337
+  class D,E,J risk
