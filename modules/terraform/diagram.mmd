@@ -1,0 +1,12 @@
+flowchart LR
+  ROOT["Terraform modules"]
+  N0["Inputs"]
+  ROOT --> N0
+  N1["Resources"]
+  N0 --> N1
+  N2["Outputs"]
+  N1 --> N2
+  N3["Version pinning"]
+  N2 --> N3
+  N4["Validation"]
+  N3 --> N4
