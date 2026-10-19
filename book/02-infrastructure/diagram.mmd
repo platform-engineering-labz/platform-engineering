@@ -1,12 +1,24 @@
 flowchart LR
-  N0["Terraform plan"]
-  N1["AWS VPC and IAM"]
-  N0 --> N1
-  N2["EKS control plane and node pools"]
-  N1 --> N2
-  N3["Add-ons and lifecycle management"]
-  N2 --> N3
-  classDef core fill:#E8F1FF,stroke:#2563EB,stroke-width:2px,color:#0F172A
-  classDef stage fill:#ECFDF5,stroke:#059669,stroke-width:2px,color:#064E3B
-  class N0,N1 core
-  class N2,N3 stage
+ subgraph S1["01 · Infrastructure source"]
+  direction TB
+  A["Terraform configuration"] --> B["Versioned modules"]
+ end
+ subgraph S2["02 · AWS platform"]
+  direction TB
+  C["VPC / IAM"] --> D["EKS control plane"]
+ end
+ subgraph S3["03 · Cluster lifecycle"]
+  direction TB
+  E["Managed node groups"] --> F["Add-ons & rollback"]
+ end
+ B -->|"supports"| C
+ D -->|"enables"| E
+ classDef blue fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#172554
+ classDef teal fill:#E7F7F1,stroke:#059669,stroke-width:2px,color:#064E3B
+ classDef amber fill:#FFF3E5,stroke:#D97706,stroke-width:2px,color:#78350F
+ class A,B blue
+ class C,D teal
+ class E,F amber
+ style S1 fill:#F8FAFC,stroke:#CBD5E1
+ style S2 fill:#F0FBF6,stroke:#A3D9C0
+ style S3 fill:#FFFAF2,stroke:#F0D4A2
