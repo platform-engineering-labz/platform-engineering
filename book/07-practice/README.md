@@ -1,5 +1,10 @@
 # Part VII — Practical Labs and Reusable Work
 
+![Container build and deployment lab workflow](diagram.png)
+
+[Open the overview PNG](diagram.png)
+
+
 The handbook explains **why** and **what**. Tested implementations should show **how**, with prerequisites, runnable commands, expected output and cleanup.
 
 | Destination | Purpose | Current status |
