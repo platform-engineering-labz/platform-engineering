@@ -23,7 +23,9 @@ def rect(x,y,w,h,fill="#FFFFFF",stroke="#DCE5EF",r=18,sw=2):
     return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{r}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}"/>'
 
 def line(x1,y1,x2,y2,color="#8DA2B8",width=3,dash=False,arrow=True):
-    return f'<path d="M{x1},{y1} L{x2},{y2}" fill="none" stroke="{color}" stroke-width="{width}" stroke-linecap="round" {"stroke-dasharray=\"8 7\"" if dash else ""} {"marker-end=\"url(#arrow)\"" if arrow else ""}/>'
+    dash_attr = 'stroke-dasharray="8 7"' if dash else ''
+    arrow_attr = 'marker-end="url(#arrow)"' if arrow else ''
+    return f'<path d="M{x1},{y1} L{x2},{y2}" fill="none" stroke="{color}" stroke-width="{width}" stroke-linecap="round" {dash_attr} {arrow_attr}/>'
 
 def icon(x,y,kind,color):
     # Reusable professional outline icon family, not faux vendor logos.
