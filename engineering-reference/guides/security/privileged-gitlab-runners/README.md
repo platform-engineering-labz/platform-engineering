@@ -4,6 +4,8 @@
 
 ![Privileged GitLab runner isolation](diagram.png)
 
+[Open the overview PNG](diagram.png)
+
 ## Problem
 Privileged Docker-in-Docker jobs can compromise node isolation; Kubernetes namespaces alone do not remove host-level risk.
 
