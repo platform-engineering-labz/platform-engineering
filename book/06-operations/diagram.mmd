@@ -1,0 +1,24 @@
+flowchart LR
+ subgraph S1["01 · Inventory"]
+  direction TB
+  A["Helm & Terraform"] --> B["Observed images"]
+ end
+ subgraph S2["02 · Assessment"]
+  direction TB
+  C["Compatibility matrix"] --> D["Support policy"]
+ end
+ subgraph S3["03 · Remediation"]
+  direction TB
+  E["Risk report"] --> F["Upgrade validation"]
+ end
+ B -->|"triggers"| C
+ D -->|"delivers"| E
+ classDef blue fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#172554
+ classDef teal fill:#E7F7F1,stroke:#059669,stroke-width:2px,color:#064E3B
+ classDef amber fill:#FFF3E5,stroke:#D97706,stroke-width:2px,color:#78350F
+ class A,B blue
+ class C,D teal
+ class E,F amber
+ style S1 fill:#F8FAFC,stroke:#CBD5E1
+ style S2 fill:#F0FBF6,stroke:#A3D9C0
+ style S3 fill:#FFFAF2,stroke:#F0D4A2

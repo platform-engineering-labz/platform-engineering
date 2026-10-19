@@ -1,0 +1,47 @@
+flowchart LR
+ subgraph PLAN["01 · CHANGE PREPARATION"]
+  direction TB
+  TF["Terraform version + state"]
+  COMP["Kubernetes API / CRD compatibility"]
+  ADDON["AWS managed add-on versions"]
+  TF --> COMP --> ADDON
+ end
+ subgraph EKS["02 · EKS CONTROL & COMPUTE"]
+  direction TB
+  CP["EKS managed control plane"]
+  NODES["Managed node groups / Karpenter"]
+  PODS["Workloads + PDBs + storage"]
+  CP --> NODES --> PODS
+ end
+ subgraph GATE["03 · POST-UPGRADE HEALTH GATES"]
+  direction TB
+  API["API availability + webhooks"]
+  NET["CNI / CSI / DNS health"]
+  READY{"Workload SLOs healthy?"}
+  API --> NET --> READY
+ end
+ subgraph REC["04 · RECOVERY DECISION"]
+  direction TB
+  ELIG{"AWS rollback eligible?"}
+  BACK["Supported rollback operation"]
+  FIX["Forward recovery"]
+  SYNC["Reconcile Terraform + add-ons"]
+  ELIG -->|Yes| BACK --> SYNC
+  ELIG -->|No| FIX --> SYNC
+ end
+ ADDON -->|"Approved change window"| CP
+ PODS --> API
+ READY -->|No| ELIG
+ READY -->|Yes| DONE["Promote stable baseline"]
+ classDef blue fill:#E8F1FF,stroke:#2563EB,stroke-width:2px,color:#12213A
+ classDef teal fill:#E7F8F3,stroke:#059669,stroke-width:2px,color:#064E3B
+ classDef amber fill:#FFF2E2,stroke:#D97706,stroke-width:2px,color:#78350F
+ classDef risk fill:#FDECF0,stroke:#BE123C,stroke-width:2px,color:#881337
+ class TF,COMP,ADDON,CP,NODES,PODS blue
+ class API,NET,DONE,SYNC teal
+ class READY,ELIG amber
+ class BACK,FIX risk
+ style PLAN fill:#F8FAFC,stroke:#CBD5E1
+ style EKS fill:#F0F6FF,stroke:#9ABCEB
+ style GATE fill:#F0FBF6,stroke:#A3D9C0
+ style REC fill:#FFFAF1,stroke:#E6C990

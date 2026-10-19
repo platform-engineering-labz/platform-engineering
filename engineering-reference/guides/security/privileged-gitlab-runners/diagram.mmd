@@ -1,0 +1,48 @@
+flowchart LR
+ subgraph CONTROL["01 · ADMISSION & SCHEDULING"]
+  direction TB
+  CI["GitLab CI job"]
+  RUN["Runner Kubernetes executor"]
+  KYV["Kyverno exception: scoped workload"]
+  CI --> RUN --> KYV
+ end
+ subgraph ISOLATE["02 · DEDICATED HIGH-RISK NODE"]
+  direction TB
+  TAINT["Taints + tolerations + node affinity"]
+  POD["Privileged DinD build pod"]
+  KERNEL["Shared host kernel — residual risk"]
+  TAINT --> POD --> KERNEL
+ end
+ subgraph GUARD["03 · COMPENSATING CONTROLS"]
+  direction TB
+  NET["Calico/Cilium NetworkPolicy"]
+  IAM["Minimal IRSA permissions"]
+  REG["Registry / controlled egress"]
+  NET --> REG
+  IAM --> REG
+ end
+ subgraph RESP["04 · DETECT & RECOVER"]
+  direction TB
+  AUDIT["Audit & workload telemetry"]
+  NODE["Disposable nodes / replacement"]
+  REVIEW["Incident response / threat review"]
+  AUDIT --> REVIEW
+  NODE --> REVIEW
+ end
+ KYV -->|"Admitted only on dedicated pool"| TAINT
+ NET -. "Restricts network paths" .-> POD
+ IAM -. "Restricts AWS permissions" .-> POD
+ POD -->|"Allowed image traffic"| REG
+ KERNEL -. "Cannot be fully mitigated" .-> REVIEW
+ POD --> AUDIT
+ POD --> NODE
+ classDef safe fill:#E8F7F1,stroke:#059669,stroke-width:2px,color:#064E3B
+ classDef danger fill:#FDECEF,stroke:#BE123C,stroke-width:2px,color:#881337
+ classDef neutral fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#172554
+ class CI,RUN,KYV,TAINT neutral
+ class NET,IAM,REG,AUDIT,NODE safe
+ class POD,KERNEL,REVIEW danger
+ style CONTROL fill:#F8FAFC,stroke:#CBD5E1
+ style ISOLATE fill:#FFF2F3,stroke:#F1A7B6,stroke-width:3px
+ style GUARD fill:#F0FBF6,stroke:#A3D9C0
+ style RESP fill:#F8FAFC,stroke:#CBD5E1

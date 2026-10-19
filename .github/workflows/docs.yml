@@ -8,7 +8,7 @@ on:
       - 'requirements-docs.txt'
       - '.github/workflows/docs.yml'
   push:
-    branches: [main]
+    branches: [main, docs/pinned-platform-research-reviews-20261019]
     paths:
       - '**/*.md'
       - 'mkdocs.yml'
@@ -30,6 +30,7 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-docs.txt
       - run: pip install -r requirements-docs.txt
+      - run: python tooling/scripts/stage_docs.py
       - run: mkdocs build
       - uses: actions/upload-artifact@v4
         with:
@@ -37,7 +38,7 @@ jobs:
           path: /tmp/platform-engineering-handbook-site
 
   publish:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -48,4 +49,5 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r requirements-docs.txt
+      - run: python tooling/scripts/stage_docs.py
       - run: mkdocs gh-deploy --force
