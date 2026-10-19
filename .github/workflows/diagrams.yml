@@ -10,6 +10,10 @@ on:
       - 'tooling/diagrams/**'
   workflow_dispatch:
 
+concurrency:
+  group: handbook-diagrams-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
