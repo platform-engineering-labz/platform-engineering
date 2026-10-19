@@ -1,0 +1,12 @@
+flowchart LR
+  ROOT["Development environment"]
+  N0["Base image"]
+  ROOT --> N0
+  N1["Tool versions"]
+  N0 --> N1
+  N2["Devcontainer"]
+  N1 --> N2
+  N3["Workspace"]
+  N2 --> N3
+  N4["Validation"]
+  N3 --> N4
