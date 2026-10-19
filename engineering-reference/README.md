@@ -1,9 +1,9 @@
 # Engineering Reference
 
-A documentation and learning section within the wider [Platform Engineering monorepo](../README.md). It contains concise technical guides, explanatory examples, troubleshooting, architecture, and curated primary sources. Larger runnable projects, scripts, infrastructure modules, and full labs can live elsewhere in the repository; link to those implementations rather than duplicating them.
+This is the **technical knowledge** part of the [Platform Engineering monorepo](../README.md). It contains focused guides, reference examples, troubleshooting, architecture and curated documentation. Runnable integrated projects live in [labs](../labs/), shared implementations in [modules](../modules/), and development assets in [tooling](../tooling/).
 
-Use the [topic index](INDEX.md) to navigate documented concepts. Existing reference directories include `guides/aws/`, `guides/kubernetes/`, `guides/terraform/`, `guides/gitlab/`, `examples/`, `troubleshooting/`, `architecture/`, and `references/`.
+Start with the [topic index](INDEX.md). Guides are organized by technologies and shared concerns (AWS, Kubernetes, Terraform, GitLab, GitOps, security, networking, storage, containers, Linux and observability); cross-cutting topics link to multiple labs or guides.
 
-All examples must be independently created from public information or synthetic settings. Never commit employer-proprietary material, private infrastructure details, or secrets.
+Follow [content standards](references/content-standards.md) to preserve the question, concise answer, synthetic examples, verified results, tradeoffs, primary sources and related work. Existing directories may be empty: an index entry does not mean a guide exists.
 
-For the reusable AI workflow, see [AGENTS.md](../AGENTS.md) and the [recovery prompt](../README.md). Repository review is on demand; publication requires an explicit request.
+Never publish employer code, internal architecture, secrets, or identifying infrastructure details. See repository-wide [AGENTS.md](../AGENTS.md) and the root [ChatGPT recovery prompt](../README.md).
