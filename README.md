@@ -1,5 +1,10 @@
 # Platform Engineering Knowledge Base
 
+![Platform engineering knowledge map](diagram.png)
+
+[Open the overview PNG](diagram.png)
+
+
 A concise, linked glossary of platform-engineering concepts, research and reusable implementations. **Start with a term, open its topic overview, then follow links to deeper analysis, primary sources or working code.** Only published material is linked as a completed guide.
 
 **[Read the handbook in chapter order →](book/README.md)** · [Browse topics](engineering-reference/INDEX.md) · [Searchable website setup](book/README.md#table-of-contents)
