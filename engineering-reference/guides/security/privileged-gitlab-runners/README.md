@@ -2,6 +2,8 @@
 
 [← Glossary](../../../../README.md) · [Topic index](../../../INDEX.md)
 
+![Privileged GitLab runner isolation](diagram.png)
+
 ## Problem
 Privileged Docker-in-Docker jobs can compromise node isolation; Kubernetes namespaces alone do not remove host-level risk.
 
