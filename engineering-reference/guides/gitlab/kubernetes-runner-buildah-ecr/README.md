@@ -1,24 +1,22 @@
-# GitLab Kubernetes executor: Buildah and ECR
+# Buildah and ECR on GitLab Kubernetes executor
+
+[← Glossary](../../../../README.md) · [Topic index](../../../INDEX.md)
 
 ## Problem
-Container builds in GitLab's Kubernetes executor need AWS ECR authentication without embedding long-lived registry credentials or unnecessarily enabling privileged Docker-in-Docker.
+CI image builds require ECR authentication without static AWS credentials or unnecessary privileged DinD.
 
-## Analysis
-Buildah can build OCI images without a Docker daemon, but rootless operation depends on the container image, user namespaces, storage driver and cluster security settings. IRSA supplies AWS credentials to the job service account, not automatically to every arbitrary image-pull mechanism. The ECR credential helper and `aws ecr get-login-password` are different authentication approaches; validate the helper's compatibility with the chosen tool.
+## Conclusion
+Use least-privilege IRSA and verify Buildah rootless behavior, image-pull authentication and ECR push authentication separately.
 
 ## Ranked recommendations
-| Rank | Impact | Recommendation | Rationale |
-| --- | --- | --- | --- |
-| 1 | Critical | Use a dedicated least-privilege Kubernetes service account with IRSA for build jobs | Avoids static AWS keys |
-| 2 | High | Prefer unprivileged Buildah after validating user namespaces and storage behavior | Reduces host exposure |
-| 3 | High | Use ECR login via AWS CLI and short-lived token, or verify credential-helper integration end to end | Avoids assuming helper support |
-| 4 | High | Separate Kubernetes image-pull authentication from in-job image push authentication | Different components resolve credentials |
-| 5 | Medium | Pin Buildah/AWS CLI image versions and test push/pull with the actual executor | Improves reproducibility |
-| 6 | Medium | Apply scoped network policies and registry endpoint access | Reduces unnecessary egress |
+| Priority | Recommendation | Impact |
+| --- | --- | --- |
+| P0 | Use dedicated least-privilege IRSA service accounts | Avoid static credentials |
+| P1 | Validate rootless Buildah on the target cluster | Reduce host exposure |
+| P1 | Test AWS CLI ECR login or verified credential-helper support | Ensure working short-lived auth |
+| P2 | Pin build image versions and enforce scoped egress | Improve repeatability |
 
-## Validation
-Confirm the job's AWS identity, successful ECR login, image build/push, non-root permissions and denial of unrelated AWS actions. Document any environment-specific user-namespace prerequisites.
+## Go deeper
+[Detailed analysis, validation and references](details.md) · [Related topic index](../../../INDEX.md)
 
-## References
-- [GitLab Kubernetes executor](https://docs.gitlab.com/runner/executors/kubernetes/)
-- [Amazon ECR registry authentication](https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry_auth.html)
+*Research summary; implementation and runtime validation are not implied.*
