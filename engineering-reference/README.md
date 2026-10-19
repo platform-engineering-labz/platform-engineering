@@ -4,6 +4,8 @@ A collection of self-contained, educational guides, reproducible examples, troub
 
 All examples should use public information and fictional resources. Do not commit secrets, private infrastructure details, or employer-proprietary content.
 
+See the [topic index](INDEX.md) for navigation and future additions.
+
 ## Directory structure
 
 | Directory | Purpose |
@@ -26,4 +28,4 @@ Keep each guide focused on one topic, include working examples when possible, ex
 
 ## ChatGPT workflow recovery
 
-If your ChatGPT instructions or GitHub connection are lost, [copy the restore prompt from the root README](../README.md).
+For read-only repository review and authorized updates, [copy the recovery prompt from the root README](../README.md). Root [AGENTS.md](../AGENTS.md) explains when to invoke the relevant skills.
