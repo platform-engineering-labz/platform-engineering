@@ -4,6 +4,8 @@
 
 ![Flux, Helm and EKS lifecycle scanning](diagram.png)
 
+[Open the overview PNG](diagram.png)
+
 ## Problem
 A Flux repository may deploy unsupported applications and add-ons even when Helm charts are pinned.
 
