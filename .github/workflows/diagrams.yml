@@ -1,0 +1,48 @@
+name: Render professional handbook diagrams
+
+on:
+  push:
+    branches:
+      - docs/pinned-platform-research-reviews-20261019
+    paths:
+      - '**/diagram.mmd'
+      - '.github/workflows/diagrams.yml'
+      - 'tooling/diagrams/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Mermaid CLI
+        run: npm install --no-save @mermaid-js/mermaid-cli@11.12.0
+      - name: Render diagrams to local PNG files
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' source; do
+            output="${source%.mmd}.png"
+            ./node_modules/.bin/mmdc -i "$source" -o "$output" \
+              -c tooling/diagrams/mermaid-config.json \
+              -b white -w 1600 -H 900 -s 2
+          done < <(find . -name diagram.mmd -not -path './node_modules/*' -print0)
+      - name: Commit generated PNGs to the same feature branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- '**/diagram.png' diagram.png
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "docs: render professional topic architecture PNGs"
+            git push
+          fi
