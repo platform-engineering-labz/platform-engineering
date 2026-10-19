@@ -1,5 +1,7 @@
 # Part V — Security
 
+![Privileged runner security boundaries](diagram.png)
+
 Security controls operate at different boundaries: Kyverno governs admission, Calico/Cilium govern allowed network traffic, IRSA governs AWS permissions, and node isolation limits co-tenancy. None alone makes privileged DinD equivalent to an unprivileged workload.
 
 ## Published chapter
