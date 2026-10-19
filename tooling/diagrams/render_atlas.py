@@ -148,7 +148,8 @@ def render(path,spec):
             else:out.append(line(1210,780,1185,700))
     out.append(rect(70,937,1660,94,"#E8EFF7","#E8EFF7",15,0))
     out.append(txt(98,977,"DESIGN INTENT",18,"#2C668D",760))
-    out.append(txt(98,1009,spec["note"],19,INK,480))
+    if layout!="solution":
+        out.append(txt(98,1009,spec["note"],19,INK,480))
     out.append(txt(1715,1070,"EDITABLE SOURCE  •  architecture-atlas.json",16,SUB,500,"end"))
     out.append("</svg>")
     svg="".join(out).encode()
