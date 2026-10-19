@@ -1,21 +1,47 @@
 flowchart LR
-  subgraph S0["SOURCE & CONTROL"]
+  subgraph SCM["01 · GITLAB — SOURCE & ORCHESTRATION"]
     direction TB
-    N0["GitLab pipeline and runner"] --> N1["Kubernetes executor schedules pod"]
+    REPO["Git repository"]
+    PIPE["CI pipeline"]
+    RUNNER["GitLab Runner manager"]
+    REPO --> PIPE --> RUNNER
   end
-  subgraph S1["EXECUTION & SECURITY BOUNDARY"]
+  subgraph CLUSTER["02 · AMAZON EKS — EPHEMERAL BUILD BOUNDARY"]
     direction TB
-    N2["Buildah builds OCI image"] --> N3["Service account assumes IAM role via IRSA"]
+    API["Kubernetes API"]
+    subgraph POD["Kubernetes job pod"]
+      direction TB
+      BUILD["Buildah · OCI build"]
+      IMAGE["Image layers + digest"]
+      BUILD --> IMAGE
+    end
+    SA["Kubernetes ServiceAccount"]
+    API --> POD
+    SA -. "Projected OIDC token" .-> BUILD
   end
-  N1 --> N2
-  subgraph S2["VERIFICATION & OPERATIONS"]
+  subgraph ACCOUNT["03 · AWS ACCOUNT — AUTHORIZATION & REGISTRY"]
     direction TB
-    N4["ECR authorization token"] --> N5["Push immutable image digest"]
+    OIDC["IAM OIDC provider"]
+    STS["AWS STS · AssumeRoleWithWebIdentity"]
+    IAM["Scoped ECR push policy"]
+    ECR[("Amazon ECR · image repository")]
+    OIDC --> STS --> IAM
+    IAM --> ECR
   end
-  N3 --> N4
-  classDef blue fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#0F172A
-  classDef green fill:#E8F7F1,stroke:#059669,stroke-width:2px,color:#064E3B
-  classDef amber fill:#FFF4E5,stroke:#D97706,stroke-width:2px,color:#78350F
-  class N0,N1 blue
-  class N2,N3 green
-  class N4,N5 amber
+  RUNNER -->|"Create job pod"| API
+  SA -. "Federated identity" .-> OIDC
+  BUILD -->|"Request short-lived credentials"| STS
+  IMAGE -->|"Push layers and manifest"| ECR
+  ECR -->|"Pull by digest"| DEPLOY["Downstream deployment"]
+  classDef source fill:#E9F1FF,stroke:#2D63A8,stroke-width:2px,color:#12213A
+  classDef execution fill:#E8F7F5,stroke:#148C7D,stroke-width:2px,color:#103B36
+  classDef identity fill:#FFF3E5,stroke:#D68A26,stroke-width:2px,color:#573709
+  classDef registry fill:#EDE9FE,stroke:#7C3AED,stroke-width:2px,color:#3B1D78
+  class REPO,PIPE,RUNNER source
+  class API,BUILD,IMAGE,DEPLOY execution
+  class SA,OIDC,STS,IAM identity
+  class ECR registry
+  style SCM fill:#F7F9FC,stroke:#CBD5E1,stroke-width:2px
+  style CLUSTER fill:#F2FAF8,stroke:#9ED5C9,stroke-width:2px
+  style POD fill:#FFFFFF,stroke:#148C7D,stroke-dasharray:5 4
+  style ACCOUNT fill:#FCF9F5,stroke:#E8CFAB,stroke-width:2px
