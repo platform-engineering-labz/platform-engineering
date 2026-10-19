@@ -23,3 +23,7 @@ All examples should use public information and fictional resources. Do not commi
 ## Contributing content
 
 Keep each guide focused on one topic, include working examples when possible, explain design decisions, and cite official documentation. Never publish credentials or private organizational information.
+
+## ChatGPT workflow recovery
+
+If your ChatGPT instructions or GitHub connection are lost, [copy the restore prompt from the root README](../README.md).
