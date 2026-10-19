@@ -713,9 +713,9 @@
     ]
   },
   "labs": {
-    "title": "Platform Integration Lab Architecture",
-    "subtitle": "A realistic end-to-end EKS, CI/CD and GitOps validation environment",
-    "layout": "pipeline",
+    "title": "Solution blueprint: verifiable platform integration labs",
+    "subtitle": "Turn candidate ideas into isolated reproducible exercises with explicit pass/fail evidence",
+    "layout": "solution",
     "note": "Labs are illustrative until deployed and validated; do not imply a running environment.",
     "stages": [
       {
@@ -778,7 +778,37 @@
           ]
         ]
       }
-    ]
+    ],
+    "problem": "A roadmap of lab ideas is not a working lab and must not be presented as deployed",
+    "steps": [
+      [
+        "SPECIFY",
+        "Choose one question, acceptance test and synthetic identifiers",
+        "database"
+      ],
+      [
+        "PROVISION",
+        "Pin Terraform/provider versions and deploy isolated EKS resources",
+        "cloud"
+      ],
+      [
+        "EXERCISE",
+        "Run Buildah / IRSA / Flux / policy scenario using test workloads",
+        "terminal"
+      ],
+      [
+        "VERIFY + TEARDOWN",
+        "Collect CI evidence, negative tests, cost and resource cleanup",
+        "shield"
+      ]
+    ],
+    "guards": [
+      "Do not reuse employer identifiers, secrets or live production clusters",
+      "Each implemented lab gets its own README, source, tests and teardown",
+      "Track candidates as planned until runnable code and validation exist"
+    ],
+    "outcome": "RESULT: an independently reproducible lab with clear expected outcome and cleanup",
+    "validation": "PROVE: fresh environment succeeds · negative security test fails · resources removed"
   },
   "modules": {
     "title": "Reusable Infrastructure Modules",
@@ -1121,9 +1151,9 @@
     ]
   },
   "engineering-reference/guides/aws/eks-upgrade-rollback": {
-    "title": "Amazon EKS Upgrade & Recovery",
-    "subtitle": "Control-plane version change, workload gates and recovery decisions",
-    "layout": "pipeline",
+    "title": "Decision architecture: EKS upgrade and recovery",
+    "subtitle": "Rollback is conditional and may not be exposed by the pinned Terraform AWS provider",
+    "layout": "solution",
     "note": "Rollback eligibility is conditional; node groups, add-ons and Terraform need separate reconciliation.",
     "stages": [
       {
@@ -1186,12 +1216,42 @@
           ]
         ]
       }
-    ]
+    ],
+    "problem": "Control-plane upgrades can break workloads; AWS rollback does not imply Terraform support",
+    "steps": [
+      [
+        "BEFORE CHANGE",
+        "Check AWS rollback eligibility, version window and add-on compatibility",
+        "clock"
+      ],
+      [
+        "STAGING GATE",
+        "Test control-plane upgrade, node replacement, CRDs and workload SLOs",
+        "cluster"
+      ],
+      [
+        "IF FAILURE",
+        "Use supported AWS rollback only when eligible; otherwise forward recover",
+        "shield"
+      ],
+      [
+        "RECONCILE",
+        "Restore compatible add-ons/nodes; reconcile Terraform state and config",
+        "build"
+      ]
+    ],
+    "guards": [
+      "Check provider schema/changelog; do not assume rollback resource argument",
+      "Control-plane recovery does not automatically revert node groups or add-ons",
+      "Capture preflight versions, evidence, rollback criteria and ownership"
+    ],
+    "outcome": "RESULT: tested conditional recovery runbook rather than assumed one-click Terraform rollback",
+    "validation": "PROVE: eligibility decision · provider capability · staging recovery · drift check"
   },
   "engineering-reference/guides/gitlab/kubernetes-runner-buildah-ecr": {
-    "title": "GitLab Runner → Buildah → Amazon ECR",
-    "subtitle": "Kubernetes build execution and AWS workload identity across trust boundaries",
-    "layout": "pipeline",
+    "title": "Recommended solution: rootless Buildah with IRSA",
+    "subtitle": "Eliminate static AWS keys and unnecessary DinD; separate push credentials from image-pull authentication",
+    "layout": "solution",
     "note": "IRSA authorizes AWS access; Buildah creates OCI layers; ECR stores pushed image digests.",
     "stages": [
       {
@@ -1274,12 +1334,42 @@
           ]
         ]
       }
-    ]
+    ],
+    "problem": "CI must build and push to ECR without privileged DinD or static AWS keys",
+    "steps": [
+      [
+        "1 · ADMISSION",
+        "GitLab Runner creates an ephemeral Kubernetes job pod",
+        "runner"
+      ],
+      [
+        "2 · UNPRIVILEGED BUILD",
+        "Buildah runs rootless; validate user namespaces and storage driver",
+        "build"
+      ],
+      [
+        "3 · AWS IDENTITY",
+        "Dedicated ServiceAccount → OIDC → STS → scoped IAM role",
+        "iam"
+      ],
+      [
+        "4 · PUSH AUTH",
+        "AWS CLI ECR login or validated credential helper → push digest",
+        "ecr"
+      ]
+    ],
+    "guards": [
+      "Kubernetes image-pull credentials are configured separately",
+      "Restrict registry egress; deny unrelated AWS actions",
+      "Pin Buildah/AWS CLI versions and verify actual job identity"
+    ],
+    "outcome": "RESULT: reproducible OCI builds with short-lived ECR push authorization; no privileged DinD required",
+    "validation": "PROVE: non-root build · aws sts get-caller-identity · ECR push/pull · denied extra IAM action"
   },
   "engineering-reference/guides/security/privileged-gitlab-runners": {
-    "title": "Privileged Runner Threat Boundaries",
-    "subtitle": "Dedicated node isolation and compensating controls for DinD workloads",
-    "layout": "hub",
+    "title": "Recommended isolation for unavoidable privileged DinD",
+    "subtitle": "Prefer rootless builds; if DinD is required, isolate the node and explicitly retain residual kernel risk",
+    "layout": "solution",
     "note": "Privileged DinD retains host-kernel compromise risk; policy and IAM cannot erase it.",
     "stages": [
       {
@@ -1333,12 +1423,42 @@
           ]
         ]
       }
-    ]
+    ],
+    "problem": "A compromised privileged CI job can cross the host-kernel trust boundary",
+    "steps": [
+      [
+        "PREFERRED",
+        "Replace privileged DinD with validated rootless Buildah / BuildKit",
+        "build"
+      ],
+      [
+        "EXCEPTION",
+        "Kyverno denies privileged pods except narrowly identified runner jobs",
+        "policy"
+      ],
+      [
+        "CONTAIN",
+        "Dedicated tainted short-lived Karpenter nodes; no trusted co-tenants",
+        "cluster"
+      ],
+      [
+        "RESTRICT",
+        "Calico/Cilium default deny + scoped IRSA + controlled registry egress",
+        "shield"
+      ]
+    ],
+    "guards": [
+      "Deny metadata access and cross-job traffic; test policy bypass",
+      "Route registry pulls via approved proxy without assuming all curl can be blocked",
+      "Audit exceptions, rotate nodes, test teardown and escape scenarios"
+    ],
+    "outcome": "RESULT: reduced blast radius and persistence, NOT security equivalence to non-privileged pods",
+    "validation": "PROVE: rejected unauthorized pod · isolated job network · scoped IAM · node recycle"
   },
   "engineering-reference/guides/security/kubernetes-workload-eol-inventory": {
-    "title": "Kubernetes Software Lifecycle Inventory",
-    "subtitle": "Collect component versions, evaluate support and prioritize remediation",
-    "layout": "pipeline",
+    "title": "Solution: evidence-based EOL inventory and CI policy",
+    "subtitle": "Resolve deployed component versions before assessing support; make unknown coverage visible",
+    "layout": "solution",
     "note": "Unmapped versions are UNKNOWN, not automatically supported or end-of-life.",
     "stages": [
       {
@@ -1421,6 +1541,36 @@
           ]
         ]
       }
-    ]
+    ],
+    "problem": "Pinned Helm chart versions conceal app, sidecar, image and EKS add-on lifecycle risk",
+    "steps": [
+      [
+        "DISCOVER",
+        "Flux HelmRelease / OCIRepository + Terraform + rendered manifests",
+        "flux"
+      ],
+      [
+        "RESOLVE",
+        "Separate chart, appVersion, every image digest, add-on and AMI",
+        "database"
+      ],
+      [
+        "VERIFY",
+        "Official upstream policies + validated endoflife.date mapping + AWS API",
+        "clock"
+      ],
+      [
+        "ENFORCE",
+        "GitLab CI fails on proven unsupported versions; reports unknowns",
+        "shield"
+      ]
+    ],
+    "guards": [
+      "Keep OK / WARN / UNSUPPORTED / UNMAPPED / UNKNOWN / UNPINNED distinct",
+      "Installed add-on: describe-addon; compatibility: describe-addon-versions",
+      "Publish JSON/SARIF evidence and preserve scanner exit code with pipefail"
+    ],
+    "outcome": "RESULT: actionable remediation report with owners, evidence URLs and explicit coverage gaps",
+    "validation": "PROVE: chart ≠ app fixture · sidecar discovery · unknown lifecycle · nonzero CI failure"
   }
 }
