@@ -1,0 +1,12 @@
+flowchart LR
+  ROOT["GitOps reconciliation"]
+  N0["Git source"]
+  ROOT --> N0
+  N1["Flux controllers"]
+  N0 --> N1
+  N2["Helm releases"]
+  N1 --> N2
+  N3["Kustomize"]
+  N2 --> N3
+  N4["EKS workloads"]
+  N3 --> N4
