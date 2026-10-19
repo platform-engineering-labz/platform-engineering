@@ -101,6 +101,46 @@ Do not modify main.
 
 Replace `OWNER/REPO`, branch, and filename as appropriate. **If the branch or file already exists, use a new test name or ask ChatGPT to inspect the existing file before updating it.** A create-file operation cannot overwrite an existing file; an update needs its current blob SHA.
 
+### Quick workflow — "Add this to my repository"
+
+Once the GitHub integration is connected and the standing instructions below are saved, you can ask ChatGPT to prepare a pull request with a short message:
+
+```text
+Add this to my repository
+```
+
+Send that message **with the code, explanation, or requested change you want added**, or use it as a follow-up to material already discussed in the conversation. For example:
+
+```text
+Create a Terraform example for an AWS EKS cluster.
+Add this to my repository.
+```
+
+To make this shorthand work reliably across new conversations, save the following under [ChatGPT settings](https://chatgpt.com/) → **Personalization → Custom Instructions**:
+
+```text
+When I say "Add this to my repository," use my connected GitHub integration
+and the repository platform-engineering-labz/platform-engineering.
+
+Automatically:
+1. Create a descriptive feature branch from main.
+2. Create or update the requested files.
+3. Commit the changes to the feature branch.
+4. Create a pull request targeting main.
+5. Verify that the changes were successfully committed.
+6. Provide a direct link to the pull request so I can review and merge it myself.
+
+Never automatically merge into main.
+Do not ask for confirmation for routine file changes I explicitly request.
+Do not require me to run Git commands or use Codespaces.
+Never force-push, delete repositories, or change branch protections
+without explicit authorization.
+```
+
+**What happens next:** ChatGPT creates a branch, commits the files, opens a pull request, and returns a link. You review the changes in the [repository's pull requests](https://github.com/platform-engineering-labz/platform-engineering/pulls) and choose **Merge pull request** yourself. The prompt does **not** authorize ChatGPT to merge into `main`.
+
+The GitHub integration must remain connected and have sufficient repository permissions. Custom Instructions guide ChatGPT's workflow but do not bypass GitHub authorization, reviews, or branch protection rules.
+
 ### Updating an existing README
 
 For an existing file, ChatGPT first reads the file from the intended branch to obtain its contents and current **blob SHA**, then submits the complete replacement contents and that blob SHA through the GitHub integration's update-file operation. This protects against blindly overwriting a file that has changed.
