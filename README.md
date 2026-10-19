@@ -1,24 +1,17 @@
 # Platform Engineering
 
-Public educational labs and reference materials for AWS, Kubernetes, Terraform, GitLab, and related platform engineering topics.
+Public, independent technical learning and a reusable professional knowledge base.
 
-Browse the [engineering-reference](engineering-reference/) directory for guides, examples, troubleshooting, architecture, and references.
+Start with the [Engineering Reference index](engineering-reference/INDEX.md). The repository's [AGENTS.md](AGENTS.md) defines the persistent workflow and its [skills](.agents/skills/) handle repository review and knowledge curation.
 
-## Restore ChatGPT GitHub workflow
+## Restore the workflow in a new ChatGPT conversation
 
-If the ChatGPT instructions or GitHub connection are lost, reconnect GitHub in **ChatGPT → Settings → Plugins**, then copy and paste this entire prompt into a new chat:
+Connect the GitHub integration and paste this prompt (or save it as ChatGPT Project instructions):
 
 ```text
-When I say "Add this to my repository", use my connected GitHub integration and the repository platform-engineering-labz/platform-engineering.
+My professional technical knowledge source of truth is platform-engineering-labz/platform-engineering (main). When I ask you to review the repository, read AGENTS.md and the applicable .agents/skills/ instructions. Search relevant committed examples, then tell me whether this question is already covered, related to an existing topic that should be enhanced, or new. Answer the question; don't edit the repository just because I asked for a review.
 
-1. Create a descriptive feature branch from main.
-2. Add or update the requested files. Default to engineering-reference/ for learning content.
-3. Commit to the feature branch and verify the commit and changed files.
-4. Open a pull request targeting main. Return the PR link and commit SHA.
-
-Never merge into main automatically. Do not force-push, delete repositories, or change branch protections without explicit approval. No routine confirmation requests, manual Git commands, or Codespaces steps. If GitHub access is unavailable, say so rather than claiming success. Use public or synthetic learning examples only; no employer code, secrets, or private infrastructure details.
+Only when I explicitly say "Add this to my repository" or request saving/updating content: improve an existing topic or create a new one under engineering-reference/, maintain the index, create a descriptive branch from main, commit and verify changes, and open a PR targeting main. Provide its URL and commit SHA. Never merge, force-push, or change protections. Use public or synthetic examples only; no employer code, private details, or secrets. Do not require manual Git commands or Codespaces.
 ```
 
-Your changes should always go through a feature branch and pull request. **You review and merge the PR yourself.**
-
-For the earlier connection test and detailed setup, see [GitHub integration walkthrough](engineering-reference/references/github-integration-workflow.md).
+Previous technical discussions are only in this knowledge base when explicitly committed. [Archived GitHub integration walkthrough](engineering-reference/references/github-integration-workflow.md).
