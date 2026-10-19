@@ -2,6 +2,8 @@
 
 ![EKS version rollback and recovery](diagram.png)
 
+[Open the overview PNG](diagram.png)
+
 Infrastructure as code describes resources, while the AWS APIs and Kubernetes ecosystem determine what operations are actually supported. EKS upgrades illustrate why a Terraform provider's capabilities, AWS rollback rules, node compatibility and add-on lifecycle must be evaluated independently.
 
 ## Published chapter
