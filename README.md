@@ -1,31 +1,42 @@
-# Platform Engineering
+# Platform Engineering Knowledge Base
 
-A public monorepo for independently developed cloud and platform engineering **labs, reusable code, tools, architectures and technical knowledge**. Work is organized by executable scenario or reusable component, with cross-linked explanations.
+A concise, linked glossary of platform-engineering concepts, research and reusable implementations. **Start with a term, open its topic overview, then follow links to deeper analysis, primary sources or working code.** Only published material is linked as a completed guide.
 
-## Repository map
+## Glossary
 
-| Location | Purpose |
+| Term | What it means | Learn more |
+| --- | --- | --- |
+| **Amazon EKS** | AWS-managed Kubernetes control plane; version upgrades, add-ons and recovery need coordinated planning. | [Upgrade and rollback](engineering-reference/guides/aws/eks-upgrade-rollback/README.md) |
+| **AWS ECR** | Container registry; Kubernetes pulls and CI build pushes use distinct authentication paths. | [Buildah and ECR](engineering-reference/guides/gitlab/kubernetes-runner-buildah-ecr/README.md) |
+| **Buildah** | Daemonless OCI image builder, potentially usable without privileged DinD. | [Buildah on GitLab runners](engineering-reference/guides/gitlab/kubernetes-runner-buildah-ecr/README.md) |
+| **Calico / Cilium** | Kubernetes networking and policy implementations; isolation depends on the installed CNI and rules. | [Privileged runner isolation](engineering-reference/guides/security/privileged-gitlab-runners/README.md) |
+| **DinD** | Docker-in-Docker, often privileged in CI and therefore a significant node-isolation concern. | [Runner security](engineering-reference/guides/security/privileged-gitlab-runners/README.md) |
+| **EKS managed add-ons** | AWS-distributed cluster components whose installed and compatible versions must be checked separately. | [EOL inventory](engineering-reference/guides/security/kubernetes-workload-eol-inventory/README.md) |
+| **End-of-life (EOL)** | A product release no longer supported under its applicable lifecycle policy. | [Lifecycle scanning](engineering-reference/guides/security/kubernetes-workload-eol-inventory/README.md) |
+| **Flux / GitOps** | Reconciles Kubernetes desired state from version-controlled sources. | [Flux lifecycle inventory](engineering-reference/guides/security/kubernetes-workload-eol-inventory/README.md) |
+| **GitLab CI Kubernetes executor** | Runs CI jobs in Kubernetes pods; permissions, identity and isolation need explicit controls. | [Build authentication](engineering-reference/guides/gitlab/kubernetes-runner-buildah-ecr/README.md) · [Isolation](engineering-reference/guides/security/privileged-gitlab-runners/README.md) |
+| **Helm** | Kubernetes application packaging; chart version and deployed application version can differ. | [Helm EOL inventory](engineering-reference/guides/security/kubernetes-workload-eol-inventory/README.md) |
+| **IRSA** | IAM roles for Kubernetes service accounts on EKS, used for short-lived AWS workload credentials. | [Build identity](engineering-reference/guides/gitlab/kubernetes-runner-buildah-ecr/README.md) |
+| **Karpenter** | Kubernetes node provisioning and lifecycle automation. | [Runner node isolation](engineering-reference/guides/security/privileged-gitlab-runners/README.md) |
+| **Kyverno** | Kubernetes admission and policy engine for workload guardrails. | [Privileged workload controls](engineering-reference/guides/security/privileged-gitlab-runners/README.md) |
+| **Terraform** | Declarative infrastructure provisioning; provider support can lag cloud APIs. | [EKS rollback considerations](engineering-reference/guides/aws/eks-upgrade-rollback/README.md) |
+
+## Explore the repository
+
+| Area | What to expect |
 | --- | --- |
-| [Engineering reference](engineering-reference/INDEX.md) | Guides, troubleshooting, small examples, architecture and primary sources |
-| [Labs](labs/) | Runnable, multi-technology implementations and experiments |
-| [Modules](modules/) | Reusable building blocks (starting with Terraform) |
-| [Tooling](tooling/) | Container images, scripts, development containers and validation |
-| [AGENTS.md](AGENTS.md) and [.agents/skills/](.agents/skills/) | Persistent instructions for AI assistants |
+| [Technical reference](engineering-reference/README.md) | Topic overviews and linked in-depth guides |
+| [Reference index](engineering-reference/INDEX.md) | Browse published guides by technology |
+| [Labs](labs/README.md) | End-to-end runnable scenarios and proposed labs |
+| [Modules](modules/) | Reusable infrastructure components |
+| [Tooling](tooling/) | Scripts, container images and validation utilities |
 
-Start with the [content standards](engineering-reference/references/content-standards.md) when publishing new topics. Proposed lab subjects are listed in [labs/README.md](labs/README.md); **they are not implemented yet**.
+## How to read and contribute
 
-## Restore the ChatGPT workflow
+**Glossary → topic README → detailed guide → runnable implementation.** Topic READMEs give a brief problem statement, conclusion and ranked recommendations. Detailed analysis belongs in linked `details.md`; actual tested code belongs in `labs/`, `modules/` or `tooling/`. Avoid duplicating explanations and never publish private or employer-specific material.
 
-In your **existing Platform Engineering ChatGPT Project**, put these instructions in Project settings, or paste them into a new chat:
+For conventions, see [documentation standards](engineering-reference/references/content-standards.md). For AI-assisted updates, see [AGENTS.md](AGENTS.md) and the [GitHub workflow](engineering-reference/references/github-integration-workflow.md).
 
-```text
-Use platform-engineering-labz/platform-engineering as the source of truth for my committed platform-engineering code, labs, architecture, and technical knowledge.
+### Publishing as a website
 
-Answer normal questions without accessing GitHub. When I request repository review, read AGENTS.md and relevant .agents/skills/, search the entire repository, and tell me what already exists, what can be enhanced, and what is new. Do not edit anything for a read-only review.
-
-When I say "Add this to my repository" or explicitly request changes, inspect existing work first, then update/refactor related files or create a properly organized project or guide. Use labs/ for integrated runnable scenarios, modules/ for reusable code, tooling/ for development assets, and engineering-reference/ for explanations. Keep indexes and cross-links current.
-
-For writes, branch from main, commit and verify, then open a PR targeting main. Return the PR link and SHA. Never merge, force-push, delete repositories, or alter branch protection without explicit authorization. No manual Git or Codespaces steps. Publish only generic, independently generated material, never employer code, private infrastructure or secrets.
-```
-
-Only content actually committed to GitHub persists across sessions. [GitHub integration walkthrough](engineering-reference/references/github-integration-workflow.md).
+These relative Markdown links work in GitHub and can be used by a static documentation generator such as MkDocs Material. **No site is deployed yet.** Prefer GitHub Pages for this GitHub-hosted source; GitLab Pages is an alternative if a GitLab-hosted publishing workflow is desired.
