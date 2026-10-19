@@ -1,0 +1,10 @@
+flowchart LR
+  ROOT["Reusable components"]
+  N0["Interfaces"]
+  ROOT --> N0
+  N1["Version constraints"]
+  N0 --> N1
+  N2["Terraform modules"]
+  N1 --> N2
+  N3["Tests"]
+  N2 --> N3
